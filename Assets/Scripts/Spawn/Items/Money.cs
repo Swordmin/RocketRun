@@ -19,24 +19,28 @@ public class Money : MonoBehaviour
             _sprite.sprite = Resources.Load<Sprite>("Sprites/Money/Coin/Coins 1");
         if(_moneyCount > 1 && _moneyCount <= 10)
             _sprite.sprite = Resources.Load<Sprite>("Sprites/Money/Coin/Coins 10");
-        if(_moneyCount > 10 && _moneyCount <= 20)
+        if(_moneyCount > 10 && _moneyCount <= 50)
             _sprite.sprite = Resources.Load<Sprite>("Sprites/Money/Coin/Coins 20");
-        if(_moneyCount > 20 && _moneyCount <= 50)
+        if(_moneyCount > 50 && _moneyCount <= 90)
             _sprite.sprite = Resources.Load<Sprite>("Sprites/Money/Coin/Coins 50");
-        if(_moneyCount > 50 && _moneyCount <= 100)
+        if(_moneyCount > 100 && _moneyCount <= 150)
             _sprite.sprite = Resources.Load<Sprite>("Sprites/Money/Diamond/Diamonds");
+        if(_moneyCount > 150 && _moneyCount <= 200)
+            _sprite.sprite = Resources.Load<Sprite>("Sprites/Money/Diamond/Diamonds 2");
     }
     private void InitializedCount()
     {
         int hight = (int)transform.position.y;
         if (hight < 10)
-            _moneyCount = Random.Range(1, 5);
-        if (hight > 10 && hight <= 30)
-            _moneyCount = Random.Range(4, 11);
-        if (hight > 30 && hight <= 60)
-            _moneyCount = Random.Range(11, 30);
-        if (hight > 60)
-            _moneyCount = Random.Range(30, 80);
+            _moneyCount = Random.Range(1, 10);
+        if (hight > 10 && hight <= 90)
+            _moneyCount = Random.Range(10, 20);
+        if (hight > 90 && hight <= 140)
+            _moneyCount = Random.Range(20, 60);
+        if (hight > 140 && hight <= 190)
+            _moneyCount = Random.Range(60, 100);
+        if (hight > 190)
+            _moneyCount = Random.Range(100, 125);
     }
     private void Awake()
     {

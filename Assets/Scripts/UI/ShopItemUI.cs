@@ -15,27 +15,11 @@ public class ShopItemUI : MonoBehaviour
     [SerializeField] private TextMeshProUGUI _accelerationSpeedText;
     [SerializeField] private TextMeshProUGUI _rotateSpeedText;
     [SerializeField] private TextMeshProUGUI _fuelText;
+
     private void Awake()
     {
-        _textMeshPrice.text = $"{_price}$";
-        PartRocket part = Resources.Load<PartRocket>(_id);
-        _powerText.text = $"power {part.Power}";
-        _accelerationSpeedText.text = $"acceleration Speed {part.AccelerationSpeed}";
-        _rotateSpeedText.text = $"rotate Speed {part.RotateSpeed}";
-        _fuelText.text = $"fuel {part.Fuel}";
-        BinarySaveSystem saveSystem = new BinarySaveSystem();
-        SaveData saveData = saveSystem.Load();
-        if (_isBuy && !saveData.IsPartBuy(_id))
-        {
-            saveData.AddPurchasedPart(_id);
-            saveSystem.Save(saveData);
-        }
-        _isBuy = saveData.IsPartBuy(_id);
-        if (_isBuy)
-        {
-            SaleView();
-        }
-
+        TextsSetup();
+        CheckSaleState();
     }
 
     public void Buy()
@@ -67,6 +51,35 @@ public class ShopItemUI : MonoBehaviour
         _textMeshSale.gameObject.SetActive(true);
         _textMeshButton.text = "PUT";
     }
+
+    private void TextsSetup()
+    {
+        PartRocket part = Resources.Load<PartRocket>(_id);
+        _textMeshPrice.text = $"{_price}$";
+        _powerText.text = $"power {part.Power}";
+        _accelerationSpeedText.text = $"acceleration Speed {part.AccelerationSpeed}";
+        _rotateSpeedText.text = $"rotate Speed {part.RotateSpeed}";
+        _fuelText.text = $"fuel {part.Fuel}";
+    }
+
+    private void CheckSaleState()
+    {
+        BinarySaveSystem saveSystem = new BinarySaveSystem();
+        SaveData saveData = saveSystem.Load();
+        
+        if (_isBuy && !saveData.IsPartBuy(_id))
+        {
+            saveData.AddPurchasedPart(_id);
+            saveSystem.Save(saveData);
+        }
+
+        _isBuy = saveData.IsPartBuy(_id);
+        if (_isBuy)
+        {
+            SaleView();
+        }
+    }
+
 }
     
 

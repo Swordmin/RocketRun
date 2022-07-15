@@ -8,6 +8,8 @@ public class Spawner : MonoBehaviour
     [SerializeField] private int _count;
     [SerializeField] private Vector2 _size;
     [SerializeField] private bool _useRandomSize;
+    [SerializeField] private Color _sizeColor;
+    [SerializeField] private Transform _parent;
 
     private void Awake()
     {
@@ -16,7 +18,7 @@ public class Spawner : MonoBehaviour
 
     private void OnDrawGizmosSelected()
     {
-        Gizmos.color = Color.green;
+        Gizmos.color = _sizeColor;
         Gizmos.DrawCube(transform.position, _size * 2);
     }
 
@@ -32,7 +34,7 @@ public class Spawner : MonoBehaviour
                 float size = Random.Range(0.10f, 0.70f);
                 createdObject.transform.localScale = new Vector2(size, size);
             }
-            createdObject.transform.parent = transform;
+            createdObject.transform.parent = _parent;
             createdObject.GetComponent<SpriteRenderer>().flipX = Convert.ToBoolean(Random.Range(0,2));
         }
     }

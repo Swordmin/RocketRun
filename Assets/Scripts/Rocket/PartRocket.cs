@@ -7,7 +7,9 @@ using UnityEngine;
 public class PartRocket : MonoBehaviour, IPause
 {
     public Action OnFuelEnd;
-
+    
+    
+    [Header("Part сharacteristics ")]
     [SerializeField] private string _id;
     public float Power => _power;    
     [SerializeField] private float _power;
@@ -23,13 +25,16 @@ public class PartRocket : MonoBehaviour, IPause
     public float StartFuel => _startFuel;
     [SerializeField] private float _startFuel;
     
-    [SerializeField] private Rigidbody _rocketRigidbody;
-    [SerializeField] private bool _active;
-
+    [Space(10)]
     [SerializeField] private List<ParticleSystem> _fireEffects = new List<ParticleSystem>();
+    
+    private Rigidbody _rocketRigidbody;
+    private bool _active;
     private bool _fuelEmpty => _fuel <= 0;
+    
     private void Awake()
     {
+        _power += 0.7f;
         _startFuel = _fuel;
         if(!_rocketRigidbody)
             _rocketRigidbody = GetComponentInParent<Rigidbody>();
@@ -39,14 +44,16 @@ public class PartRocket : MonoBehaviour, IPause
         if (_active)
         {
             DOTween.To(() => _currentPower, x => _currentPower = x, _power, _accelerationSpeed).SetEase(Ease.InExpo);
-            _rocketRigidbody.velocity = ((_rocketRigidbody.transform.up * (_currentPower + 1f) + (Vector3.down * 1f)));
+            _rocketRigidbody.velocity = ((_rocketRigidbody.transform.up * (_currentPower + 0.3f) + (Vector3.down * 1)));
         }
         else
         {
-            if (_fuel <= 0)
-                _currentPower = 0;
+            _currentPower = 0;
         }
     }
+
+    #region PartStateChange
+    
     public void Launch()
     {
         if (_fuel != 0)
@@ -56,23 +63,35 @@ public class PartRocket : MonoBehaviour, IPause
         }
 
         if(_fireEffects.Count > 0)
-            _fireEffects.ForEach((fireEffect)=> fireEffect.Play());
+            ActivateFire();
         if(PauseController.Instance.IsPause)
             Pause();
     }
+    public void Stop()
+    {
+        _active = false;
+        _currentPower = 0;
+        StopCoroutine(nameof(FuelTick));
+        StopFireEffect();
+    }
+    #endregion
+    #region Pause
     public void Resume()
     {
         _active = true;
-        _fireEffects.ForEach((fire) => fire.Play());
+        ActivateFire();
         StartCoroutine(FuelTick());
     }
-
     public void Pause()
     {
         _active = false;
         _rocketRigidbody.velocity = Vector3.zero;
         _fireEffects.ForEach((fire) => fire.Pause());
     }
+    #endregion
+
+    #region Characteristics change
+
     public void AddFuel(float fuel)
     {
         if (fuel < 0)
@@ -84,14 +103,12 @@ public class PartRocket : MonoBehaviour, IPause
         } 
         _fuel += fuel;
     }
-
     public void AddPower(float power)
     {
         if (power < 0)
             throw new ArgumentException("Value must be positive");
         _power += power;
     }
-
     public void AddRotateSpeed(float speed)
     {
         if (speed < 0)
@@ -99,10 +116,23 @@ public class PartRocket : MonoBehaviour, IPause
         _rotateSpeed += speed;
     }
 
-    public void StopFire()
+    #endregion
+
+    #region EffectControl
+    public void StopFireEffect()
     {
         _fireEffects.ForEach((fireEffect)=> fireEffect.Stop());
     }
+    public void DisableFireEffect()
+    {
+        _fireEffects.ForEach((fireEffect)=> fireEffect.Pause());
+    }
+    public void ActivateFire()
+    {
+        _fireEffects.ForEach((fire) => fire.Play());
+    }
+    #endregion
+    
     private IEnumerator FuelTick()
     {
         while (!_fuelEmpty && _active)
@@ -116,9 +146,9 @@ public class PartRocket : MonoBehaviour, IPause
             OnFuelEnd?.Invoke();
             _active = false;
             if (_fireEffects.Count > 0)
-                StopFire();
+                StopFireEffect();
         }
     }
 
-
+    
 }

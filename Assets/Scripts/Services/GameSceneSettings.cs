@@ -8,6 +8,6 @@ public class GameSceneSettings : MonoBehaviour
     private void Awake()
     {
         Material randomSkybox = _skyboxes[Random.Range(0, _skyboxes.Count - 1)];
-        RenderSettings.skybox = randomSkybox;
+        //RenderSettings.skybox = randomSkybox;
     }
 }

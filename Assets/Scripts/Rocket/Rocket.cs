@@ -5,9 +5,9 @@ using UnityEngine;
 [RequireComponent(typeof(Rigidbody))]
 public class Rocket : MonoBehaviour, IPause
 {
-    public float Power;
-    public float Fuel;
-    public float RotateSpeed;
+    public float AllPartsPower;
+    public float AllPartsFuel;
+    public float AllPartsRotateSpeed;
     
     [SerializeField] private List<PartRocket> _engines;
     public PartRocket CurrentEngine => _currentEngine;
@@ -18,32 +18,26 @@ public class Rocket : MonoBehaviour, IPause
     [SerializeField] private TextEngine _textEngine;
     [SerializeField] private bool _isShop;
     [SerializeField] private float _kickUpForce;
+    private bool _isWorks;
     
-
     private void Awake()
     {
+        _rigidbody = GetComponent<Rigidbody>();
         _engines.ForEach((engine) =>
         {
-            Power += engine.Power;
-            Fuel += engine.Fuel;
-            RotateSpeed += engine.RotateSpeed;
+            AllPartsPower += engine.Power;
+            AllPartsFuel += engine.Fuel;
+            AllPartsRotateSpeed += engine.RotateSpeed;
         });
-        if (_doubleEngine)
-            Power += _doubleEngine.Power;
-        if (_wings)
-            RotateSpeed += _wings.RotateSpeed;
+        CheckParts();
         if (Wallet.Instance)
             Wallet.Instance.AddMoney(0);
+        if(GameStateService.Instance)
+            GameStateService.Instance.UpdateState(GameState.Play);
         if(_isShop)
             return;
         if(GameStateService.Instance)
-            GameStateService.Instance.UpdateState(GameState.Play);
-        _rigidbody = GetComponent<Rigidbody>();
-        foreach (PartRocket part in _engines)
-        {
-            _rigidbody.mass += part.Mass;
-        }
-        Invoke(nameof(NextPart),3);
+            Invoke(nameof(NextPart),3);
     }
     private void Start()
     {
@@ -51,7 +45,7 @@ public class Rocket : MonoBehaviour, IPause
         _engines[0].OnFuelEnd += () =>
         {
             if(_doubleEngine)
-                _doubleEngine.StopFire();
+                _doubleEngine.StopFireEffect();
             GameStateService.Instance.UpdateState(GameState.Fail);
         };
     }
@@ -62,42 +56,18 @@ public class Rocket : MonoBehaviour, IPause
             NextPart();
     }
 
+
+    #region PartsSetup
     public void AddPart(PartRocket part) => _engines.Add(part);
     public void SetDoubleEngine(PartRocket part) => _doubleEngine = part;
     public void SetWings(PartRocket part) => _wings = part;
-    
-    public void RotateLeft()
-    {
-         if(_currentEngine)
-             transform.Rotate(new Vector3(0,0,-_currentEngine.RotateSpeed));
-    }
-    public void RotateRight()
-    {
-         if(_currentEngine)
-             transform.Rotate(new Vector3(0,0,_currentEngine.RotateSpeed));
-    }
-    
-    public void Resume()
-    {
-        _currentEngine.Resume();
-        _rigidbody.useGravity = true;
-    }
 
-    public void Pause()
-    {
-        if(_currentEngine)
-            _currentEngine.Pause();
-        _rigidbody.useGravity = false;
-    } 
-    
-    private void DisplayText(string text)
-    {
-        TextEngine textEngine = Instantiate(_textEngine, transform.position, Quaternion.identity);
-        textEngine.Draw(text, Color.green, new Vector2(transform.position.x + 1, transform.position.y + 1), 2, 1.5f , 1.5f);
-    }
+    #endregion
+    #region PartsControl
 
     private void NextPart()
     {
+        _isWorks = true;
         if (_currentEngine && _engines.Count != 1)
             OldPartDeactivate();
         int id;
@@ -116,6 +86,67 @@ public class Rocket : MonoBehaviour, IPause
         _currentEngine.GetComponent<Rigidbody>().isKinematic = false;
         _currentEngine.OnFuelEnd -= NextPart;
         _engines.Remove(_currentEngine);
+    }
+
+    #endregion
+    #region RocketRotate
+
+    public void RotateLeft()
+    {
+        if (_currentEngine)
+            transform.Rotate(new Vector3(0, 0, -_currentEngine.RotateSpeed));
+    }
+
+    public void RotateRight()
+    {
+        if (_currentEngine)
+            transform.Rotate(new Vector3(0, 0, _currentEngine.RotateSpeed));
+    }
+
+    #endregion
+    #region Pause
+
+    public void Resume()
+    {
+        _currentEngine.Resume();
+        _rigidbody.useGravity = true;
+    }
+
+    public void Pause()
+    {
+        if(_currentEngine)
+            _currentEngine.Pause();
+        _rigidbody.useGravity = false;
+    }
+
+    #endregion
+
+    private void CheckParts()
+    {
+        if (_doubleEngine)
+            AllPartsPower += _doubleEngine.Power;
+        if (_wings)
+            AllPartsRotateSpeed += _wings.RotateSpeed;
+    }
+    
+    public void RocketStateSwith()
+    {
+        if (_isWorks)
+        {
+            _currentEngine.Stop();
+            _isWorks = false;
+        }
+        else
+        {
+            _currentEngine.Launch();
+            _isWorks = true;
+        }
+    }
+    
+    private void DisplayText(string text)
+    {
+        TextEngine textEngine = Instantiate(_textEngine, transform.position, Quaternion.identity);
+        textEngine.Draw(text, Color.green, new Vector2(transform.position.x + 1, transform.position.y + 1), 2, 1.5f , 1.5f);
     }
 
     private void NewPartSetup(PartRocket part)

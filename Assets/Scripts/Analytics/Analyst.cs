@@ -26,9 +26,9 @@ public class Analyst : MonoBehaviour
         Analytics.CustomEvent("GameEnd", new Dictionary<string, object>()
         {
             { "Money", _money},
-            { "Power", _rocket.Power},
-            { "Fuel", _rocket.Fuel},
-            { "RotateSpeed", _rocket.RotateSpeed},
+            { "Power", _rocket.AllPartsPower},
+            { "Fuel", _rocket.AllPartsFuel},
+            { "RotateSpeed", _rocket.AllPartsRotateSpeed},
             { "Hight", _hightIndex.Hight}
         });
     }

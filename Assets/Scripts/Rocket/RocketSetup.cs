@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 
 [RequireComponent(typeof(Rocket))]
 public class RocketSetup : MonoBehaviour
@@ -10,6 +11,7 @@ public class RocketSetup : MonoBehaviour
     [SerializeField] private string _idDoubleEngine;
     [SerializeField] private string _idWings;
     private BinarySaveSystem _saveSystem;
+    private PartRocket _createdHadEngine, _createdBasicEngine;
     private void Awake()
     {
         _saveSystem = new BinarySaveSystem();
@@ -28,28 +30,23 @@ public class RocketSetup : MonoBehaviour
             {
                 Destroy(part.gameObject);
             }
-        
-        GameObject hadEngine = FindPart(_idHadEngine);
-        PartRocket createdHad = Instantiate(hadEngine,transform.position + hadEngine.transform.position, hadEngine.transform.rotation, transform).GetComponent<PartRocket>();
-        _rocket.AddPart(createdHad);
-        
-        GameObject basicEngine = FindPart(_idBasicEngine);
-        PartRocket createdBasicEngine = Instantiate(basicEngine, transform.position + basicEngine.transform.position, basicEngine.transform.rotation, transform).GetComponent<PartRocket>();
-        _rocket.AddPart(createdBasicEngine);
+
+        PartRocket createdPartRocket = new PartRocket();
+        _rocket.AddPart(CreatePart(_idHadEngine, out createdPartRocket, () => _createdHadEngine = createdPartRocket));
+        _rocket.AddPart(CreatePart(_idBasicEngine, out createdPartRocket, () => _createdBasicEngine = createdPartRocket));
 
         if (!string.IsNullOrEmpty(_idWings))
         {
-            GameObject wingsEngine = FindPart(_idWings);
-            PartRocket createdWings = Instantiate(wingsEngine, transform.position + wingsEngine.transform.position, wingsEngine.transform.rotation).GetComponent<PartRocket>();
-            createdWings.transform.parent = createdBasicEngine.transform;
+
+            PartRocket createdWings = CreatePart(_idWings);
+            createdWings.transform.parent = _createdBasicEngine.transform;
             _rocket.SetWings(createdWings);
         }
 
         if (!string.IsNullOrEmpty(_idDoubleEngine))
         {
-            GameObject doubleEngine = FindPart(_idDoubleEngine);
-            PartRocket createdDoubleEngine = Instantiate(doubleEngine,transform.position + doubleEngine.transform.position, doubleEngine.transform.rotation).GetComponent<PartRocket>();
-            createdDoubleEngine.transform.parent = createdHad.transform;
+            PartRocket createdDoubleEngine = CreatePart(_idDoubleEngine);
+            createdDoubleEngine.transform.parent = _createdHadEngine.transform;
             _rocket.SetDoubleEngine(createdDoubleEngine);
         }
         Save();
@@ -74,6 +71,9 @@ public class RocketSetup : MonoBehaviour
         }
     }
 
+
+    #region SetIdPart
+
     public void SetIdHadEngine(string id)
     {
         _idHadEngine = id;
@@ -94,6 +94,8 @@ public class RocketSetup : MonoBehaviour
         _idWings = id;
         Initialized();
     }
+
+    #endregion
 
     private void Save()
     {
@@ -126,5 +128,19 @@ public class RocketSetup : MonoBehaviour
     private GameObject FindPart(string id)
     {
         return Resources.Load<GameObject>(id);
+    }
+    private PartRocket CreatePart(string id)
+    {
+        GameObject partFind = FindPart(id);
+        PartRocket createdPart = Instantiate(partFind,transform.position + partFind.transform.position, partFind.transform.rotation, transform).GetComponent<PartRocket>();
+        return createdPart;
+    }
+    private PartRocket CreatePart(string id, out PartRocket partRocket, Action action)
+    {
+        GameObject partFind = FindPart(id);
+        PartRocket createdPart = Instantiate(partFind,transform.position + partFind.transform.position, partFind.transform.rotation, transform).GetComponent<PartRocket>();
+        partRocket = createdPart;
+        action?.Invoke();
+        return createdPart;
     }
 }

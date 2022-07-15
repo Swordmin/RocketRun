@@ -102,7 +102,7 @@ MonoBehaviour:
   _accelerationSpeed: 0.2
   _rotateSpeed: 0.2
   _mass: 50
-  _fuel: 10
+  _fuel: 13
   _startFuel: 0
   _rocketRigidbody: {fileID: 0}
   _active: 0
