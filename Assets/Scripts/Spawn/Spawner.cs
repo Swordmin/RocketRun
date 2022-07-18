@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
@@ -10,10 +11,19 @@ public class Spawner : MonoBehaviour
     [SerializeField] private bool _useRandomSize;
     [SerializeField] private Color _sizeColor;
     [SerializeField] private Transform _parent;
+    [SerializeField] private bool _isTimer;
+    [SerializeField] private float _cooldown;
 
     private void Awake()
     {
-        Spawn();
+        if (!_isTimer)
+            Spawn();
+        else
+        {
+            Spawn();
+            StartCoroutine(SpawnTick());
+        }
+
     }
 
     private void OnDrawGizmosSelected()
@@ -28,14 +38,28 @@ public class Spawner : MonoBehaviour
         {
             float x = Random.Range(transform.position.x - _size.x, transform.position.x + _size.x);
             float y = Random.Range(transform.position.y - _size.y, transform.position.y + _size.y);
-            GameObject createdObject = Instantiate(_objects[Random.Range(0, _objects.Length)], new Vector2(x,y),Quaternion.identity);
+            GameObject randomObject = _objects[Random.Range(0, _objects.Length)];
+            GameObject createdObject = Instantiate(randomObject, new Vector2(x,y),randomObject.transform.rotation);
             if (_useRandomSize)
             {
-                float size = Random.Range(0.10f, 0.70f);
-                createdObject.transform.localScale = new Vector2(size, size);
+                float size = Random.Range(0.70f, 1f);
+                createdObject.transform.localScale = new Vector3(size, size, size);
             }
             createdObject.transform.parent = _parent;
-            createdObject.GetComponent<SpriteRenderer>().flipX = Convert.ToBoolean(Random.Range(0,2));
+            if (createdObject.TryGetComponent(out SpriteRenderer sprite))
+            {
+                sprite.flipX = Convert.ToBoolean(Random.Range(0, 2));
+            }
         }
     }
+
+    private IEnumerator SpawnTick()
+    {
+        while (true)
+        {
+            yield return new WaitForSeconds(_cooldown);
+            Spawn();
+        }
+    }
+    
 }

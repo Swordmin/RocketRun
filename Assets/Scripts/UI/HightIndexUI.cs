@@ -1,9 +1,13 @@
-﻿using DG.Tweening;
+﻿using System;
+using DG.Tweening;
 using TMPro;
 using UnityEngine;
 
 public class HightIndexUI : MonoBehaviour
 {
+
+    public Action<int> OnHightChange;
+
     public int Hight => _hight;
     [SerializeField] private int _hight;
     [SerializeField] private Transform _rocket;
@@ -41,6 +45,7 @@ public class HightIndexUI : MonoBehaviour
             }
 
             _hight = (int)_rocket.transform.position.y;
+            OnHightChange?.Invoke(_hight);
             _text.text = _hight.ToString();
         }
     }

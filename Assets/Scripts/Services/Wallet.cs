@@ -4,7 +4,7 @@ using UnityEngine;
 public class Wallet : Singleton<Wallet>
 {
     public float Count => _count;
-    [SerializeField] private float _count = 1000;
+    [SerializeField] private float _count;
     private BinarySaveSystem _saveSystem;
     
     public Action<float> OnMoneyChange;

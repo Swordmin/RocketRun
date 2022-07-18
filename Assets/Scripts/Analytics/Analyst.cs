@@ -23,6 +23,14 @@ public class Analyst : MonoBehaviour
 
     private void OnGameEnd()
     {
+        Analytics.CustomEvent("GameFail", new Dictionary<string, object>()
+        {
+            { "Money", _money},
+            { "Power", _rocket.AllPartsPower},
+            { "Fuel", _rocket.AllPartsFuel},
+            { "RotateSpeed", _rocket.AllPartsRotateSpeed},
+            { "Hight", _hightIndex.Hight}
+        });
         Analytics.CustomEvent("GameEnd", new Dictionary<string, object>()
         {
             { "Money", _money},

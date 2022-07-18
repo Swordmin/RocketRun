@@ -40,7 +40,8 @@ public class MainMenu : MonoBehaviour
     {
         _settingsPanel.GetComponent<RectTransform>().DOMoveX(3000, 1).SetEase(Ease.Flash);
     }
-    public void OpenAdminPanel()
+
+    private void OpenAdminPanel()
     {
         _adminPanel.GetComponent<RectTransform>().DOMoveX(Screen.width * 0.5f, 1).SetEase(Ease.Flash);
     }
@@ -61,6 +62,11 @@ public class MainMenu : MonoBehaviour
         {
             OpenAdminPanel();
             return;
+        }
+
+        if (_codeField.text.ToLower() == "weneedmoregold")
+        {
+            Wallet.Instance.AddMoney(300);
         }
 
         _adminPanelText.text = "Is that a Krusty Krab?";

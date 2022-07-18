@@ -13,6 +13,9 @@ public class PartRocket : MonoBehaviour, IPause
     [SerializeField] private string _id;
     public float Power => _power;    
     [SerializeField] private float _power;
+    
+    public float CurrentPower => _currentPower;
+
     [SerializeField] private float _currentPower;
     public float AccelerationSpeed => _accelerationSpeed;
     [SerializeField] private float _accelerationSpeed;
@@ -137,8 +140,8 @@ public class PartRocket : MonoBehaviour, IPause
     {
         while (!_fuelEmpty && _active)
         {
-            yield return new WaitForSeconds(1);
-            _fuel--;
+            yield return new WaitForSeconds(0.1f);
+            _fuel -= 0.1f;
         }
 
         if (_active)

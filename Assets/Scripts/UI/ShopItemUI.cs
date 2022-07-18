@@ -34,7 +34,6 @@ public class ShopItemUI : MonoBehaviour
                 SaveData saveData = saveSystem.Load();
                 saveData.AddPurchasedPart(_id);
                 saveSystem.Save(saveData);
-                _textMeshPrice.color = Color.green;
                 _isBuy = true;
                 SaleView();
             }

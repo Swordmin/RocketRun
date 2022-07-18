@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using Cinemachine;
 using UnityEngine;
 
 [RequireComponent(typeof(Rigidbody))]
@@ -8,20 +7,29 @@ public class Rocket : MonoBehaviour, IPause
     public float AllPartsPower;
     public float AllPartsFuel;
     public float AllPartsRotateSpeed;
+
+    public float Health => _health;
+    [SerializeField] private float _health;
+    public float StartHealth => _startHealth;
+    private float _startHealth;
     
     [SerializeField] private List<PartRocket> _engines;
     public PartRocket CurrentEngine => _currentEngine;
+    [SerializeField] private Wallet _wallet;
+    [SerializeField] private GameStateService _gameStateService;
     [SerializeField] private PartRocket _currentEngine;
     [SerializeField] private PartRocket _doubleEngine;
     [SerializeField] private PartRocket _wings;
     [SerializeField] private Rigidbody _rigidbody;
     [SerializeField] private TextEngine _textEngine;
     [SerializeField] private bool _isShop;
-    [SerializeField] private float _kickUpForce;
+    [SerializeField] private ParticleSystem _destroyEffect;
     private bool _isWorks;
     
     private void Awake()
     {
+        _startHealth = _health;
+        DisplayText("");
         _rigidbody = GetComponent<Rigidbody>();
         _engines.ForEach((engine) =>
         {
@@ -30,10 +38,13 @@ public class Rocket : MonoBehaviour, IPause
             AllPartsRotateSpeed += engine.RotateSpeed;
         });
         CheckParts();
-        if (Wallet.Instance)
-            Wallet.Instance.AddMoney(0);
-        if(GameStateService.Instance)
-            GameStateService.Instance.UpdateState(GameState.Play);
+        if (GameStateService.Instance)
+        {
+            _gameStateService = GameStateService.Instance;
+            _gameStateService.UpdateState(GameState.Play);
+        }
+
+        _wallet = Wallet.Instance;
         if(_isShop)
             return;
         if(GameStateService.Instance)
@@ -46,16 +57,9 @@ public class Rocket : MonoBehaviour, IPause
         {
             if(_doubleEngine)
                 _doubleEngine.StopFireEffect();
-            GameStateService.Instance.UpdateState(GameState.Fail);
+            _gameStateService.UpdateState(GameState.Fail);
         };
     }
-
-    private void Update()
-    {
-        if(Input.GetKeyDown(KeyCode.Space))
-            NextPart();
-    }
-
 
     #region PartsSetup
     public void AddPart(PartRocket part) => _engines.Add(part);
@@ -157,7 +161,6 @@ public class Rocket : MonoBehaviour, IPause
             part.OnFuelEnd += NextPart;
             if(_wings)
                 part.AddRotateSpeed(_wings.RotateSpeed);
-            _rigidbody.AddForce(Vector3.up * _kickUpForce, ForceMode.Impulse);
         }
         else
         {
@@ -168,10 +171,16 @@ public class Rocket : MonoBehaviour, IPause
             }
         }
     }
+
+    private void DestroyRocket()
+    {
+        _destroyEffect.Play();
+        _engines.ForEach((engine)=> Destroy(engine.gameObject));
+    }
     
     private void OnTriggerEnter(Collider other)
     {
-        if(GameStateService.Instance.State != GameState.Play)
+        if(_gameStateService.State != GameState.Play)
             return;
         if (other.TryGetComponent(out FuelСanister fuel))
         {
@@ -180,9 +189,22 @@ public class Rocket : MonoBehaviour, IPause
         }
         if (other.TryGetComponent(out Money money))
         {
-            Wallet.Instance.AddMoney(money.MoneyCount);
+            _wallet.AddMoney(money.MoneyCount);
             Destroy(other.gameObject);
             DisplayText($"{money.MoneyCount}");
+        }
+    }
+
+    private void OnCollisionEnter()
+    {
+        if (Mathf.Abs(_rigidbody.velocity.magnitude) > 0.5f)
+        {
+            _health -= Mathf.Abs(_rigidbody.velocity.magnitude) * 20;
+            if (_health <= 0)
+            {
+                _gameStateService.UpdateState(GameState.Fail);
+                DestroyRocket();
+            }
         }
     }
 }

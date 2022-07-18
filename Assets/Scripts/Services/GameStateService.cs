@@ -30,7 +30,9 @@ public class GameStateService : Singleton<GameStateService>
 
     public void UpdateState(int stateId)
     {
-        _state = (GameState)stateId;
+        GameState state = (GameState)stateId;
+        if(state != _state)
+            _state = state;
         LoadState();
     }
 
