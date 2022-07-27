@@ -42,7 +42,7 @@ public class PartRocket : MonoBehaviour, IPause
         if(!_rocketRigidbody)
             _rocketRigidbody = GetComponentInParent<Rigidbody>();
     }
-    private void Update()
+    private void FixedUpdate()
     {
         if (_active)
         {

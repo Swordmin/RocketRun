@@ -17,6 +17,9 @@ public class StatisticsUI : MonoBehaviour
     [SerializeField] private TextMeshProUGUI _textMeshHight;
     [SerializeField] private TextMeshProUGUI _textMeshTime;
     [SerializeField] private TextMeshProUGUI _textMeshCondition;
+    private Coroutine _timerCoroutine;
+    private TranslateService _translateService;
+    
     private void Start()
     {
         _moneyInStart = Wallet.Instance.Count;
@@ -24,7 +27,7 @@ public class StatisticsUI : MonoBehaviour
         {
             if (state == GameState.Fail)
             {
-                StopCoroutine(nameof(Timer));
+                StopCoroutine(_timerCoroutine);
                 Initialized();
             }
         };
@@ -33,7 +36,8 @@ public class StatisticsUI : MonoBehaviour
             _hight = hight;
         };
         Wallet.Instance.OnMoneyChange += UpdateMoney;
-        StartCoroutine(Timer());
+        _timerCoroutine =  StartCoroutine(Timer());
+        _translateService = TranslateService.Instance;
     }
 
     private void Initialized()
@@ -49,8 +53,7 @@ public class StatisticsUI : MonoBehaviour
     private IEnumerator InitializedTick()
     {
         Wallet.Instance.OnMoneyChange -= UpdateMoney;
-        
-        
+
         float moneyCounter = 0;
         float totalMoneyCouter = 0;
         float totalMoney = 0;
@@ -67,35 +70,34 @@ public class StatisticsUI : MonoBehaviour
         {
             yield return new WaitForSeconds(0.01f);
             hightCounter++;
-            _textMeshHight.text = $"Altitude: {hightCounter}: ${(int)(hightCounter/2)}";
+            _textMeshHight.text = $"{_translateService.Change("Altitude")}: {hightCounter}: ${(int)(hightCounter/2)}";
         }
         yield return new WaitForSeconds(0.5f);
         while (moneyCounter < _money)
         {
             yield return new WaitForSeconds(0.01f);
             moneyCounter++;
-            _textMeshMoney.text = $"Money collected: ${moneyCounter}";
+            _textMeshMoney.text = $"{_translateService.Change("MoneyCollect")}: ${moneyCounter}";
         }
         yield return new WaitForSeconds(0.5f);
         while (timeCounter < _time)
         {
             yield return new WaitForSeconds(0.01f);
             timeCounter++;
-            _textMeshTime.text = $"Time: {timeCounter}s : ${(int)(timeCounter/3)}";
+            _textMeshTime.text = $"{_translateService.Change("Time")}: {timeCounter}s : ${(int)(timeCounter/3)}";
         }
         while (conditionCounter < _rocket.Health)
         {
             yield return new WaitForSeconds(0.01f);
             conditionCounter++;
-            _textMeshCondition.text = $"Condition: {conditionCounter}: ${moneyCondition}";
+            _textMeshCondition.text = $"{_translateService.Change("Condition")}: {conditionCounter}: ${moneyCondition}";
         }
         while (totalMoneyCouter < totalMoney)
         {
             yield return new WaitForSeconds(0.01f);
             totalMoneyCouter++;
-            _textMeshTotalMoney.text = $"Total: ${totalMoneyCouter}";
+            _textMeshTotalMoney.text = $"{_translateService.Change("Total")}: ${totalMoneyCouter}";
         }
-        
     }
 
     private IEnumerator Timer()

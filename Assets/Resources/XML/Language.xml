@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Language>
+
+  <Russian>
+    <Play>Старт</Play>
+    <Settings>Настройки</Settings>
+    <Back>Назад</Back>
+    <Activate>Активировать</Activate>
+    <Close>Закрыть</Close>
+    <ClearSave>Очистить сохранения</ClearSave>
+    <Pause>Пауза</Pause>
+    <Altitude>Высота</Altitude>
+    <MoneyCollect>Собранных монет</MoneyCollect>
+    <Time>Время</Time>
+    <Condition>Состояние ракеты</Condition>
+    <Total>Всего</Total>
+    <Restart>Перезапуск</Restart>
+    <Shop>Магазин</Shop>
+    <Resume>Продолжить</Resume>
+    <Power>Скорость</Power>
+    <AccelerationSpeed>Скорость разгона</AccelerationSpeed>
+    <RotateSpeed>Скорость поворота</RotateSpeed>
+    <Fuel>Топливо</Fuel>
+    <Buy>Купить</Buy>
+    <MagnetArea>Сила магинта</MagnetArea>
+    <Put>Взять</Put>
+    <Menu>Меню</Menu>
+  </Russian>
+
+  <English>
+    <Play>Play</Play>
+    <Settings>Settings</Settings>
+    <Back>Back</Back>
+    <Activate>Activate</Activate>
+    <Close>Close</Close>
+    <ClearSave> Clear Save</ClearSave>
+    <Pause>Pause</Pause>
+    <Altitude>Altitude</Altitude>
+    <MoneyCollect>Money collect</MoneyCollect>
+    <Time>Time</Time>
+    <Condition>Condition</Condition>
+    <Total>Total</Total>
+    <Restart>Restart</Restart>
+    <Shop>Shop</Shop>
+    <Resume>Resume</Resume>
+    <Power>Power</Power>
+    <AccelerationSpeed>AccelerationSpeed</AccelerationSpeed>
+    <RotateSpeed>RotateSpeed</RotateSpeed>
+    <Fuel>Fuel</Fuel>
+    <Buy>Buy</Buy>
+    <MagnetArea>Magnet area</MagnetArea>
+    <Put>Put</Put>
+    <Menu>Menu</Menu>
+</English>
+
+</Language>

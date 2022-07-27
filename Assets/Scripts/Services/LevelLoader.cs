@@ -12,6 +12,7 @@ public class LevelLoader : MonoBehaviour
     }
     public void Restart()
     {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        if(_fadePanel)
+            _fadePanel.Fade(1, () => SceneManager.LoadScene(SceneManager.GetActiveScene().name));
     }
 }

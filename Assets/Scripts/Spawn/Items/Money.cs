@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 
 [RequireComponent(typeof(SpriteRenderer))]
-public class Money : MonoBehaviour
+public class Money : Item
 {
     [SerializeField] private SpriteRenderer _sprite;
     public float MoneyCount => _moneyCount;

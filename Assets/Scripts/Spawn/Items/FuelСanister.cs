@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-public class FuelСanister : MonoBehaviour
+public class FuelСanister : Item
 {
     [SerializeField] private float _fuel;
     public float Fuel => _fuel;
@@ -16,6 +16,6 @@ public class FuelСanister : MonoBehaviour
         if (saveData.IsPartBuy("Fuel + 30%"))
             _fuel += (_fuel * 30) / 100;
         if (saveData.IsPartBuy("Fuel + 50%"))
-            _fuel += (_fuel * 30) / 100;
+            _fuel += (_fuel * 50) / 100;
     }
 }

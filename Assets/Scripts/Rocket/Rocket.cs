@@ -20,6 +20,7 @@ public class Rocket : MonoBehaviour, IPause
     [SerializeField] private PartRocket _currentEngine;
     [SerializeField] private PartRocket _doubleEngine;
     [SerializeField] private PartRocket _wings;
+    public Rigidbody Rigidbody => _rigidbody;
     [SerializeField] private Rigidbody _rigidbody;
     [SerializeField] private TextEngine _textEngine;
     [SerializeField] private bool _isShop;
@@ -44,7 +45,7 @@ public class Rocket : MonoBehaviour, IPause
             _gameStateService.UpdateState(GameState.Play);
         }
 
-        _wallet = Wallet.Instance;
+        _wallet = Wallet.Instance ?? new Wallet(0);
         if(_isShop)
             return;
         if(GameStateService.Instance)
@@ -175,23 +176,27 @@ public class Rocket : MonoBehaviour, IPause
     private void DestroyRocket()
     {
         _destroyEffect.Play();
-        _engines.ForEach((engine)=> Destroy(engine.gameObject));
+        _engines.ForEach((engine) => Destroy(engine.gameObject));
     }
     
     private void OnTriggerEnter(Collider other)
     {
         if(_gameStateService.State != GameState.Play)
             return;
-        if (other.TryGetComponent(out FuelСanister fuel))
+
+        if(other.TryGetComponent(out Item item)) 
         {
-            _currentEngine.AddFuel(fuel.Fuel);
-            Destroy(other.gameObject);
-        }
-        if (other.TryGetComponent(out Money money))
-        {
-            _wallet.AddMoney(money.MoneyCount);
-            Destroy(other.gameObject);
-            DisplayText($"{money.MoneyCount}");
+            if(item is FuelСanister)
+                _currentEngine.AddFuel((item as FuelСanister).Fuel);
+            if (item is Money)
+            {
+                if(_wallet)
+                _wallet.AddMoney((item as Money).MoneyCount);
+                DisplayText($"{(item as Money).MoneyCount}");
+            }
+            item.PlayAudio();
+            item.GetComponent<SpriteRenderer>().enabled = false;
+            Destroy(item.gameObject);
         }
     }
 

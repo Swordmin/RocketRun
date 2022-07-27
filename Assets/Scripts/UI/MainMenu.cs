@@ -14,16 +14,33 @@ public class MainMenu : MonoBehaviour
     [SerializeField] private TMP_InputField _codeField;
     [SerializeField] private TextMeshProUGUI _adminPanelText;
     [SerializeField] private Image _image;
-
+    [SerializeField] private TextMeshProUGUI _textDebug;
     private void Awake()
     {
         BinarySaveSystem saveSystem = new BinarySaveSystem();
-        if(!PlayerPrefs.HasKey("FirstPlay"))
+        if (saveSystem.IsFileExist())
+            _textDebug.text = "Exist";
+        else
+        {
+            SaveData data = new SaveData();
+            data.IdHadEngine = "RocketsParts/lvl1/HadEngine";
+            data.IdBasicEngine = "RocketsParts/lvl1/BasicEngine";
+            saveSystem.Save(data);
+            _textDebug.text = "NotExist";
+            PlayerPrefs.SetString("FirstPlay","No");
+        }
+
+        if (PlayerPrefs.HasKey("FirstPlay"))
+        {
             if (PlayerPrefs.GetString("FirstPlay") == "Yes")
             {
-                SaveData data = new SaveData();
-                saveSystem.Save(data);
+                _textDebug.text = "Create file";
             }
+        }
+        else
+        {
+            PlayerPrefs.SetString("FirstPlay", "Yes");
+        }
     }
 
     public void StartGame()
@@ -83,8 +100,16 @@ public class MainMenu : MonoBehaviour
         saveData.IdWings = "";
         saveData.Money = 0;
         saveData.MaxHight = 0;
+        saveData.Language = "";
         saveData.PurchasedParts = new List<string>() { "null" };
         saveSystem.Save(saveData);
         Wallet.Instance.Load();
     }
+
+
+    public void DeletePlayerPrefs()
+    {
+        PlayerPrefs.DeleteAll();
+    }
+    
 }

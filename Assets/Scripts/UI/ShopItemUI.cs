@@ -15,25 +15,28 @@ public class ShopItemUI : MonoBehaviour
     [SerializeField] private TextMeshProUGUI _accelerationSpeedText;
     [SerializeField] private TextMeshProUGUI _rotateSpeedText;
     [SerializeField] private TextMeshProUGUI _fuelText;
+    private Wallet _wallet;
 
-    private void Awake()
+    private void Start()
     {
         TextsSetup();
         CheckSaleState();
+        _wallet = Wallet.Instance ?? new Wallet(1000);
     }
 
     public void Buy()
     {
         if (!_isBuy)
         {
-            if (Wallet.Instance.Count >= _price)
+            if (_wallet.Count >= _price)
             {
-                Wallet.Instance.Pay(_price);
+                _wallet.Pay(_price);
                 _rocketSetup.UpdatePart(_type, _id);
                 BinarySaveSystem saveSystem = new BinarySaveSystem();
                 SaveData saveData = saveSystem.Load();
                 saveData.AddPurchasedPart(_id);
                 saveSystem.Save(saveData);
+                _textMeshPrice.gameObject.SetActive(false);
                 _isBuy = true;
                 SaleView();
             }
@@ -48,17 +51,18 @@ public class ShopItemUI : MonoBehaviour
     {
         _textMeshPrice.gameObject.SetActive(false);
         _textMeshSale.gameObject.SetActive(true);
-        _textMeshButton.text = "PUT";
+        _textMeshButton.text = TranslateService.Instance.Change("Put");
     }
 
     private void TextsSetup()
     {
+
         PartRocket part = Resources.Load<PartRocket>(_id);
         _textMeshPrice.text = $"{_price}$";
-        _powerText.text = $"power {part.Power}";
-        _accelerationSpeedText.text = $"acceleration Speed {part.AccelerationSpeed}";
-        _rotateSpeedText.text = $"rotate Speed {part.RotateSpeed}";
-        _fuelText.text = $"fuel {part.Fuel}";
+        _powerText.text = $"{TranslateService.Instance.Change("Power")} {part.Power}";
+        _accelerationSpeedText.text = $"{TranslateService.Instance.Change("AccelerationSpeed")} {part.AccelerationSpeed}";
+        _rotateSpeedText.text = $"{TranslateService.Instance.Change("RotateSpeed")} {part.RotateSpeed}";
+        _fuelText.text = $"{TranslateService.Instance.Change("Fuel")} {part.Fuel}";
     }
 
     private void CheckSaleState()
@@ -77,6 +81,15 @@ public class ShopItemUI : MonoBehaviour
         {
             SaleView();
         }
+        else
+        {
+            _textMeshButton.text = TranslateService.Instance.Change("Buy");
+        }
+    }
+
+    public void SetId(string id) 
+    {
+        _id = id;
     }
 
 }

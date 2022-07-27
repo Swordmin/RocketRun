@@ -5,6 +5,7 @@ public class ShopBonusUI : MonoBehaviour
 {
     [SerializeField] private string _id;
     [SerializeField] private float _price;
+    [SerializeField] private string _descriptionTranslateId;
     [SerializeField] private string _description;
     [SerializeField] private TextMeshProUGUI _textMeshPrice;
     [SerializeField] private TextMeshProUGUI _textMeshSale;
@@ -15,7 +16,7 @@ public class ShopBonusUI : MonoBehaviour
     private void Awake()
     {
         CheckSaleState();
-        _textMeshDescriptionText.text = _description;
+        _textMeshDescriptionText.text = TranslateService.Instance.Change(_descriptionTranslateId) + _description;
         _textMeshPrice.text = $"{_price}";
     }
 
@@ -32,6 +33,7 @@ public class ShopBonusUI : MonoBehaviour
                 saveSystem.Save(saveData);
                 _buttonBuy.SetActive(false);
                 _textMeshSale.gameObject.SetActive(true);
+                _textMeshPrice.gameObject.SetActive(false);
                 _isBuy = true;
             }
         }

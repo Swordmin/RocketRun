@@ -21,8 +21,11 @@ public class GameStateService : Singleton<GameStateService>
         base.Awake();
     }
 
-    public void UpdateState(GameState state)
+    public void UpdateState(GameState stateLoad)
     {
+        GameState state = (GameState)stateLoad;
+        if(state == _state)
+            return;
         _state = state;
         OnChangeState?.Invoke(State);
         LoadState();
@@ -31,8 +34,10 @@ public class GameStateService : Singleton<GameStateService>
     public void UpdateState(int stateId)
     {
         GameState state = (GameState)stateId;
-        if(state != _state)
-            _state = state;
+        if(state == _state)
+            return;
+        _state = state;
+        OnChangeState?.Invoke(State);
         LoadState();
     }
 

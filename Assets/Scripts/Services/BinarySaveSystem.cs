@@ -33,6 +33,13 @@ public class BinarySaveSystem : MonoBehaviour
 
         return saveData;
     }
+
+    public bool IsFileExist()
+    {
+        if (File.Exists(Application.persistentDataPath + "/Save.dat"))
+            return true;
+        return false;
+    }
 }
 
 [Serializable]
@@ -43,6 +50,7 @@ public class SaveData
     public string IdBasicEngine;
     public string IdDoubleEngine;
     public string IdWings;
+    public string Language;
     public float Money;
     public float MaxHight;
     public List<string> PurchasedParts = new List<string>(){"null"};
