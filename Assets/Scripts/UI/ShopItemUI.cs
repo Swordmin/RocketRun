@@ -15,14 +15,17 @@ public class ShopItemUI : MonoBehaviour
     [SerializeField] private TextMeshProUGUI _accelerationSpeedText;
     [SerializeField] private TextMeshProUGUI _rotateSpeedText;
     [SerializeField] private TextMeshProUGUI _fuelText;
+    [SerializeField] private PartRocket _part;
     private Wallet _wallet;
 
     private void Start()
     {
+        _part = Resources.Load<PartRocket>(_id);
         TextsSetup();
         CheckSaleState();
         _wallet = Wallet.Instance ?? new Wallet(1000);
     }
+
 
     public void Buy()
     {
@@ -56,13 +59,11 @@ public class ShopItemUI : MonoBehaviour
 
     private void TextsSetup()
     {
-
-        PartRocket part = Resources.Load<PartRocket>(_id);
         _textMeshPrice.text = $"{_price}$";
-        _powerText.text = $"{TranslateService.Instance.Change("Power")} {part.Power}";
-        _accelerationSpeedText.text = $"{TranslateService.Instance.Change("AccelerationSpeed")} {part.AccelerationSpeed}";
-        _rotateSpeedText.text = $"{TranslateService.Instance.Change("RotateSpeed")} {part.RotateSpeed}";
-        _fuelText.text = $"{TranslateService.Instance.Change("Fuel")} {part.Fuel}";
+        _powerText.text = $"{TranslateService.Instance.Change("Power", _powerText)} {_part.Power}";
+        _accelerationSpeedText.text = $"{TranslateService.Instance.Change("AccelerationSpeed", _accelerationSpeedText)} {_part.AccelerationSpeed}";
+        _rotateSpeedText.text = $"{TranslateService.Instance.Change("RotateSpeed", _rotateSpeedText)} {_part.RotateSpeed}";
+        _fuelText.text = $"{TranslateService.Instance.Change("Fuel", _fuelText)} {_part.Fuel}";
     }
 
     private void CheckSaleState()

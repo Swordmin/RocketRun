@@ -53,13 +53,14 @@ public class SaveData
     public string Language;
     public float Money;
     public float MaxHight;
+    public float Session;
     public List<string> PurchasedParts = new List<string>(){"null"};
 
     public void AddPurchasedPart(string id)
     {
         foreach (string idPart in PurchasedParts)
         {
-            Debug.Log(idPart);
+            UnityEngine.Debug.Log(idPart);
         }
         if (PurchasedParts.Count > 0)
             foreach (string idPart in PurchasedParts)
@@ -81,11 +82,11 @@ public class SaveData
         return false;
     }
 
-    public void Show()
+    public void Debug()
     {
         foreach (string idPart in PurchasedParts)
         {
-            Debug.Log(idPart);
+            UnityEngine.Debug.Log(idPart);
         }
     }
 }

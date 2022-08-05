@@ -12,21 +12,21 @@ public class PartRocket : MonoBehaviour, IPause
     [Header("Part сharacteristics ")]
     [SerializeField] private string _id;
     public float Power => _power;    
-    [SerializeField] private float _power;
+    [SerializeField, Min(0)] private float _power;
     
     public float CurrentPower => _currentPower;
 
-    [SerializeField] private float _currentPower;
+    [SerializeField, Min(0)] private float _currentPower;
     public float AccelerationSpeed => _accelerationSpeed;
-    [SerializeField] private float _accelerationSpeed;
+    [SerializeField, Min(0)] private float _accelerationSpeed;
     public float RotateSpeed => _rotateSpeed;
-    [SerializeField] private float _rotateSpeed;
+    [SerializeField, Min(0)] private float _rotateSpeed;
     public float Mass => _mass;
-    [SerializeField] private float _mass;
+    [SerializeField, Min(0)] private float _mass;
     public float Fuel => _fuel;
-    [SerializeField] private float _fuel;
+    [SerializeField, Min(0)] private float _fuel;
     public float StartFuel => _startFuel;
-    [SerializeField] private float _startFuel;
+    [SerializeField, Min(0)] private float _startFuel;
     
     [Space(10)]
     [SerializeField] private List<ParticleSystem> _fireEffects = new List<ParticleSystem>();

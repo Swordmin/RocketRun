@@ -5,9 +5,14 @@ using UnityEngine;
 [RequireComponent(typeof(BoxCollider))]
 public class Magnet : MonoBehaviour
 {
+
     [SerializeField] private Transform _rocket;
     [SerializeField] private Vector3 _size;
+    [SerializeField] private float _timeToMove;
+    [SerializeField] private float _timeToScale;
+    [SerializeField] private float _targetSize;
     private BoxCollider _collider;
+
     private void Awake()
     {
         _collider = GetComponent<BoxCollider>();
@@ -34,7 +39,9 @@ public class Magnet : MonoBehaviour
     {
         if (other.TryGetComponent(out Item item ))
         {
-            item.transform.DOMove(transform.position, 0.1f);
+            item.transform.DOMove(_rocket.position, _timeToMove);
+            item.transform.DOScale(_targetSize, _timeToScale);
         }
     }
+
 }

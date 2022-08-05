@@ -5,6 +5,7 @@ using DG.Tweening;
 
 public class SpeedIndexUI : MonoBehaviour
 {
+
     [SerializeField] private Rocket _rocket;
 
     private const float MIN_SPEED_ANGLE = 20;

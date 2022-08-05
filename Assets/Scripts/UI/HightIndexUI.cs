@@ -3,7 +3,7 @@ using DG.Tweening;
 using TMPro;
 using UnityEngine;
 
-public class HightIndexUI : MonoBehaviour
+public class HightIndexUI : MonoBehaviour, IAudioPlayer
 {
 
     public Action<int> OnHightChange;
@@ -12,6 +12,7 @@ public class HightIndexUI : MonoBehaviour
     [SerializeField] private int _hight;
     [SerializeField] private Transform _rocket;
     [SerializeField] private TextMeshProUGUI _text;
+    [SerializeField] private AudioTrack _audioTrack;
     private bool _active;
     private BinarySaveSystem _saveSystem;
     private float _maxHight;
@@ -43,7 +44,10 @@ public class HightIndexUI : MonoBehaviour
             {
                 _text.color = Color.green;
             }
-
+            if(_hight > 40)
+            {
+                PlayAudio();
+            }
             _hight = (int)_rocket.transform.position.y;
             OnHightChange?.Invoke(_hight);
             _text.text = _hight.ToString();
@@ -67,4 +71,19 @@ public class HightIndexUI : MonoBehaviour
         }
     }
 
+    public void PlayAudio()
+    {
+        if (!_audioTrack.IsPlay)
+        {
+            GameObject audioObject = new GameObject();
+            audioObject.AddComponent<AudioSource>();
+            AudioSource audioSource = audioObject.GetComponent<AudioSource>();
+            audioSource.volume = _audioTrack.Volume;
+            audioSource.loop = _audioTrack.Loop;
+            audioSource.clip = _audioTrack.Clip;
+            audioSource.Play();
+            _audioTrack.Play();
+            Destroy(audioObject, audioSource.clip.length);
+        }
+    }
 }

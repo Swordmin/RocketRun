@@ -1,43 +1,77 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Analytics;
+using Unity.Services.Core;
+using Unity.Services.Analytics;
+using System;
 
-public class Analyst : MonoBehaviour
+public class Analyst : Singleton<Analyst>
 {
     [SerializeField] private Rocket _rocket;
     [SerializeField] private HightIndexUI _hightIndex;
-    private float _money;
+    [SerializeField] private Wallet _wallet;
+    private float _moneyAdded, _startMoney;
+    private float _moneyConsumption;
+    private float _session;
 
-    private void Awake()
+    protected override void Awake()
     {
-        _money = 0;
-        Wallet.Instance.OnMoneyChange += count => _money += count; 
-        GameStateService.Instance.OnChangeState += state =>
-        {
-            if (state == GameState.Fail)
-            {
-                OnGameEnd();
-            }
-        };
+        StartService();
+        Initialization(true);
+        base.Awake();
     }
 
-    private void OnGameEnd()
+    private void Start()
     {
-        Analytics.CustomEvent("GameFail", new Dictionary<string, object>()
+        _wallet = Wallet.Instance;
+        _wallet.OnPay += (price) => _moneyConsumption += price;
+        _wallet.OnAdd += (add) => _moneyAdded += add;
+        BinarySaveSystem saveSystem = new BinarySaveSystem();
+        SaveData saveData = saveSystem.Load();
+        _session = saveData.Session;
+    }
+
+    public void EndOfSession()
+    {
+        _session++;
+        float moneyCollect = _moneyAdded;
+        float sessionBalance = _moneyAdded -= _moneyConsumption;
+
+        try
         {
-            { "Money", _money},
-            { "Power", _rocket.AllPartsPower},
-            { "Fuel", _rocket.AllPartsFuel},
-            { "RotateSpeed", _rocket.AllPartsRotateSpeed},
-            { "Hight", _hightIndex.Hight}
-        });
-        Analytics.CustomEvent("GameEnd", new Dictionary<string, object>()
+            AnalyticsService.Instance.CustomData("EndOfSession", new Dictionary<string, object>
+            {
+                { "CollectMoney", moneyCollect},
+                { "Consumption", _moneyConsumption},
+                { "Session", _session},
+                { "SessionBalance", sessionBalance},
+                { "TotalBalance", _wallet.Count},
+            });
+            AnalyticsService.Instance.Flush();
+        }
+        catch(Exception ex) 
         {
-            { "Money", _money},
-            { "Power", _rocket.AllPartsPower},
-            { "Fuel", _rocket.AllPartsFuel},
-            { "RotateSpeed", _rocket.AllPartsRotateSpeed},
-            { "Hight", _hightIndex.Hight}
-        });
+            Debug.LogError(ex.ToString());
+        }
+
+        _moneyConsumption = 0;
+        _moneyAdded = 0;
+    }
+
+    private async void StartService() 
+    {
+        try
+        {
+            await UnityServices.InitializeAsync();
+            await AnalyticsService.Instance.CheckForRequiredConsents();
+        }
+        catch(ConsentCheckException ex) 
+        {
+
+            Debug.LogError(ex.ToString());
+
+        }
+        List<string> consentIdentifiers = await AnalyticsService.Instance.CheckForRequiredConsents();
+        EndOfSession();
     }
 }

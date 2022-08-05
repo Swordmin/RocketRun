@@ -15,7 +15,7 @@ public class RocketEditor : Editor
     public override void OnInspectorGUI()
     {
         base.OnInspectorGUI();
-        GUILayout.Space(10);
+        GUILayout.Space(30);
         _fuelAdd = float.Parse(GUILayout.TextField(_fuelAdd.ToString(), 4));
         if (GUILayout.Button("AddFuel"))
         {

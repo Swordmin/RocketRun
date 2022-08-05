@@ -1,4 +1,6 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
+using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 
@@ -17,12 +19,15 @@ public class StatisticsUI : MonoBehaviour
     [SerializeField] private TextMeshProUGUI _textMeshHight;
     [SerializeField] private TextMeshProUGUI _textMeshTime;
     [SerializeField] private TextMeshProUGUI _textMeshCondition;
+    [SerializeField] private List<CounterSpeed> _counterSpeeds;
+    private Wallet _wallet;
     private Coroutine _timerCoroutine;
     private TranslateService _translateService;
     
     private void Start()
     {
-        _moneyInStart = Wallet.Instance.Count;
+        _wallet = Wallet.Instance ?? new Wallet(100000);
+        _moneyInStart = _wallet.Count;
         GameStateService.Instance.OnChangeState += state =>
         {
             if (state == GameState.Fail)
@@ -35,7 +40,7 @@ public class StatisticsUI : MonoBehaviour
         {
             _hight = hight;
         };
-        Wallet.Instance.OnMoneyChange += UpdateMoney;
+        _wallet.OnMoneyChange += UpdateMoney;
         _timerCoroutine =  StartCoroutine(Timer());
         _translateService = TranslateService.Instance;
     }
@@ -75,26 +80,26 @@ public class StatisticsUI : MonoBehaviour
         yield return new WaitForSeconds(0.5f);
         while (moneyCounter < _money)
         {
-            yield return new WaitForSeconds(0.01f);
+            yield return new WaitForSeconds(GetSpeedCounter(_money));
             moneyCounter++;
             _textMeshMoney.text = $"{_translateService.Change("MoneyCollect")}: ${moneyCounter}";
         }
         yield return new WaitForSeconds(0.5f);
         while (timeCounter < _time)
         {
-            yield return new WaitForSeconds(0.01f);
+            yield return new WaitForSeconds(GetSpeedCounter(_time));
             timeCounter++;
             _textMeshTime.text = $"{_translateService.Change("Time")}: {timeCounter}s : ${(int)(timeCounter/3)}";
         }
         while (conditionCounter < _rocket.Health)
         {
-            yield return new WaitForSeconds(0.01f);
+            yield return new WaitForSeconds(GetSpeedCounter(_rocket.Health));
             conditionCounter++;
             _textMeshCondition.text = $"{_translateService.Change("Condition")}: {conditionCounter}: ${moneyCondition}";
         }
         while (totalMoneyCouter < totalMoney)
         {
-            yield return new WaitForSeconds(0.01f);
+            yield return new WaitForSeconds(GetSpeedCounter(totalMoney));
             totalMoneyCouter++;
             _textMeshTotalMoney.text = $"{_translateService.Change("Total")}: ${totalMoneyCouter}";
         }
@@ -107,6 +112,36 @@ public class StatisticsUI : MonoBehaviour
             yield return new WaitForSeconds(1);
             _time++;
         }
+    }
+
+    private float GetSpeedCounter(float level) 
+    {
+        for (int i = 0; i < _counterSpeeds.Count - 1; i++)
+        {
+            if (level <= _counterSpeeds[0].Level)
+                return _counterSpeeds[0].Speed;
+            if (_counterSpeeds.Count - 1 >= i + 1)
+            {
+                if (level >= _counterSpeeds[i].Level && level <= _counterSpeeds[i + 1].Level)
+                    return _counterSpeeds[i + 1].Speed;
+            }
+            else
+            {
+                return _counterSpeeds[_counterSpeeds.Count - 1].Speed;
+            }    
+        }
+        return 0;
+    }
+
+    [Serializable]
+    private struct CounterSpeed
+    {
+
+        [SerializeField] private float _level;
+        public float Level => _level;
+        [SerializeField] private float _speed;
+        public float Speed => _speed;
+    
     }
     
 }

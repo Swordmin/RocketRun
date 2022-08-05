@@ -7,6 +7,7 @@ public class RewardedAds : MonoBehaviour, IUnityAdsLoadListener, IUnityAdsShowLi
 
     [SerializeField] private Button _button;
     [SerializeField] private string _androidAdUnitId = "Rewarded_Android";
+    [SerializeField] private int _reward;
     
     private void Start()
     {
@@ -55,7 +56,7 @@ public class RewardedAds : MonoBehaviour, IUnityAdsLoadListener, IUnityAdsShowLi
     {
         if (showCompletionState == UnityAdsShowCompletionState.COMPLETED)
         {
-            Wallet.Instance.AddMoney(10);
+            Wallet.Instance.AddMoney(_reward);
             Advertisement.Load(_androidAdUnitId,this);
         }
     }

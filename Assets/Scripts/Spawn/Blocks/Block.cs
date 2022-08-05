@@ -15,19 +15,11 @@ public class Block : MonoBehaviour, IPause
         _speed *= Random.Range(0.5f, 2.5f);
         _rigidbody = GetComponent<Rigidbody>();
         Destroy(gameObject, _destoroyTime);
+        _rigidbody.velocity = _direction * _speed;
     }
 
     private void Update()
     {
-        if (Input.touchCount > 0)
-        {
-            _rigidbody.AddForce(Vector3.up * 5, ForceMode.Impulse);
-        }
-
-        if (!_isPause)
-            _rigidbody.velocity = _direction * _speed;
-        else
-            _rigidbody.velocity = Vector3.zero;
     }
 
     public void Resume()

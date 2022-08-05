@@ -22,11 +22,11 @@
     <RotateSpeed>Скорость поворота</RotateSpeed>
     <Fuel>Топливо</Fuel>
     <Buy>Купить</Buy>
-    <MagnetArea>Сила магинта</MagnetArea>
+    <MagnetArea>Сила магнита</MagnetArea>
     <Put>Взять</Put>
     <Menu>Меню</Menu>
+    <Sale>Продано</Sale>
   </Russian>
-
   <English>
     <Play>Play</Play>
     <Settings>Settings</Settings>
@@ -44,13 +44,170 @@
     <Shop>Shop</Shop>
     <Resume>Resume</Resume>
     <Power>Power</Power>
-    <AccelerationSpeed>AccelerationSpeed</AccelerationSpeed>
-    <RotateSpeed>RotateSpeed</RotateSpeed>
+    <AccelerationSpeed>Acceleration Speed</AccelerationSpeed>
+    <RotateSpeed>Rotate Speed</RotateSpeed>
     <Fuel>Fuel</Fuel>
     <Buy>Buy</Buy>
     <MagnetArea>Magnet area</MagnetArea>
     <Put>Put</Put>
     <Menu>Menu</Menu>
+    <Sale>Sales</Sale>
 </English>
+  <Czech>
+    <Play>Start</Play>
+    <Settings>Nastavení</Settings>
+    <Back>Zpět</Back>
+    <Activate>Aktivovat</Activate>
+    <Close>Zavřít</Close>
+    <ClearSave>Vymazat uložení</ClearSave>
+    <Pause>Pause</Pause>
+    <Altitude>Výška</Altitude>
+    <MoneyCollect>Shromážděné mince</MoneyCollect>
+    <Time>Čas</Time>
+    <Condition>Stav rakety</Condition>
+    <Total>Celkem</Total>
+    <Restart>Restartovat</Restart>
+    <Shop>Nakupovat</Shop>
+    <Resume>Pokračovat</Resume>
+    <Power>Rychlost</Power>
+    <AccelerationSpeed>Rychlost zrychlení</AccelerationSpeed>
+    <RotateSpeed>Rychlost otáčení</RotateSpeed>
+    <Fuel>Palivo</Fuel>
+    <Buy>Koupit</Buy>
+    <MagnetArea>Síla magnetu</MagnetArea>
+    <Put>Vezměte</Put>
+    <Menu>Nabídka</Menu>
+    <Sale>Odbyt</Sale>
+  </Czech>
+  <French>
+    <Play>Jouer</Play>
+    <Settings>Paramètres</Settings>
+    <Back>Retour</Back>
+    <Activate>Activer</Activate>
+    <Close>Fermer</Close>
+    <ClearSave>Effacer Enregistrer</ClearSave>
+    <Pause>Pause</Pause>
+    <Altitude>Altitude</Altitude>
+    <MoneyCollect>Argent collecté</MoneyCollect>
+    <Time>Heure</Time>
+    <Condition>État</Condition>
+    <Total>Total</Total>
+    <Restart>Redémarrer</Restart>
+    <Shop>Boutique</Shop>
+    <Resume>Reprendre</Resume>
+    <Power>Alimentation</Power>
+    <AccelerationSpeed>Vitesse d'accélération</AccelerationSpeed>
+    <RotateSpeed>Vitesse de rotation</RotateSpeed>
+    <Fuel>Carburant</Fuel>
+    <Buy>Acheter</Buy>
+    <MagnetArea>Zone magnétique</MagnetArea>
+    <Put>Prendre</Put>
+    <Menu>Menu</Menu>
+    <Sale>Ventes</Sale>
+  </French>
+  <Polish>
+    <Play>Rozpocznij</Play>
+    <Settings>Ustawienia</Settings>
+    <Back>Wstecz</Back>
+    <Activate>Aktywuj</Activate>
+    <Close>Zamknij</Close>
+    <ClearSave>Wyczyść zapisy</ClearSave>
+    <Pause>Wstrzymaj</Pause>
+    <Altitude>Wysokość</Altitude>
+    <MoneyCollect>Zebrane monety</MoneyCollect>
+    <Time>Czas</Time>
+    <Condition>Stan rakiety</Condition>
+    <Total>Całkowity</Total>
+    <Restart>Uruchom ponownie</Restart>
+    <Shop>Sklep</Shop>
+    <Resume>Kontynuuj</Resume>
+    <Power>Prędkość</Power>
+    <AccelerationSpeed>Prędkość przyspieszenia</AccelerationSpeed>
+    <RotateSpeed>Prędkość skrętu</RotateSpeed>
+    <Fuel>Paliwo</Fuel>
+    <Buy>Kup</Buy>
+    <MagnetArea>Moc magnesu</MagnetArea>
+    <Put>Brać</Put>
+    <Menu>Menu</Menu>
+    <Sale>Sprzedane</Sale>
+  </Polish>
+  <Italian>
+    <Play>Inizia</Play>
+    <Settings>Impostazioni</Settings>
+    <Back>Indietro</Back>
+    <Activate>Attiva</Activate>
+    <Close>Chiudi</Close>
+    <ClearSave>Cancella salvataggi</ClearSave>
+    <Pause>Pausa</Pause>
+    <Altitude>Altitudine</Altitude>
+    <MoneyCollect>Monete raccolte</MoneyCollect>
+    <Time>Ora</Time>
+    <Condition>Stato del razzo</Condition>
+    <Total>Totale</Total>
+    <Restart>Riavvia</Restart>
+    <Shop>Acquista</Shop>
+    <Resume>Continua</Resume>
+    <Power>Velocità</Power>
+    <AccelerationSpeed>Velocità di accelerazione</AccelerationSpeed>
+    <RotateSpeed>Velocità di svolta</RotateSpeed>
+    <Fuel>Carburante</Fuel>
+    <Buy>Compra</Buy>
+    <MagnetArea>Potenza magnetica</MagnetArea>
+    <Put>Prendi</Put>
+    <Menu>Menu</Menu>
+    <Sale>Venduta</Sale>
+  </Italian>
+  <Spanish>
+    <Play>Comenzar</Play>
+    <Settings>Configuración</Settings>
+    <Back>Atrás</Back>
+    <Activate>Activar</Activate>
+    <Close>Cerrar</Close>
+    <ClearSave>Borrar elementos guardados</ClearSave>
+    <Pause>Pausa</Pause>
+    <Altitude>Altitud</Altitude>
+    <MoneyCollect>Monedas recolectadas</MoneyCollect>
+    <Time>Tiempo</Time>
+    <Condition>Estado del cohete</Condition>
+    <Total>Total</Total>
+    <Restart>Reiniciar</Restart>
+    <Shop>Tienda</Shop>
+    <Resume>Continuar</Resume>
+    <Power>Velocidad</Power>
+    <AccelerationSpeed>Velocidad de aceleración</AccelerationSpeed>
+    <RotateSpeed>Velocidad de giro</RotateSpeed>
+    <Fuel>Combustible</Fuel>
+    <Buy>Comprar</Buy>
+    <MagnetArea>Potencia magnética</MagnetArea>
+    <Put>Tomar</Put>
+    <Menu>Menú</Menu>
+    <Sale>Vendido</Sale>
+  </Spanish>
+  <Deutsch>
+    <Play>Start</Play>
+    <Settings>Einstellungen</Settings>
+    <Back>Zurück</Back>
+    <Activate>Aktivieren</Activate>
+    <Close>Schließen</Close>
+    <ClearSave>Speicher löschen</ClearSave>
+    <Pause>Pause</Pause>
+    <Altitude>Höhe</Altitude>
+    <MoneyCollect>Gesammelte Münzen</MoneyCollect>
+    <Time>Uhrzeit</Time>
+    <Condition>Raketenstatus</Condition>
+    <Total>Gesamt</Total>
+    <Restart>Neustart</Restart>
+    <Shop>Shop</Shop>
+    <Resume>Weiter</Resume>
+    <Power>Geschwindigkeit</Power>
+    <AccelerationSpeed>Beschleunigungsgeschwindigkeit</AccelerationSpeed>
+    <RotateSpeed>Wendegeschwindigkeit</RotateSpeed>
+    <Fuel>Kraftstoff</Fuel>
+    <Buy>Kaufen</Buy>
+    <MagnetArea>Magnetstärke</MagnetArea>
+    <Put>Take</Put>
+    <Menu>Menü</Menu>
+    <Sale>Verkauft</Sale>
+  </Deutsch>
 
 </Language>

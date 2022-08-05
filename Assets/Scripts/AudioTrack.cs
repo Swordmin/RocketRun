@@ -14,4 +14,10 @@ public struct AudioTrack
     [SerializeField] private float _volume;
     public float Volume => _volume;
 
+    [SerializeField] private bool _isPlay;
+    public bool IsPlay => _isPlay;
+
+
+    public void Play() => _isPlay = true;
+
 }

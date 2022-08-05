@@ -15,4 +15,6 @@ public class LevelLoader : MonoBehaviour
         if(_fadePanel)
             _fadePanel.Fade(1, () => SceneManager.LoadScene(SceneManager.GetActiveScene().name));
     }
+
+    public void EndOfSession() => Analyst.Instance.EndOfSession();
 }

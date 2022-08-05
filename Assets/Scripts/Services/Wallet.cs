@@ -8,6 +8,8 @@ public class Wallet : Singleton<Wallet>
     private BinarySaveSystem _saveSystem;
     
     public Action<float> OnMoneyChange;
+    public Action<float> OnPay;
+    public Action<float> OnAdd;
 
     public Wallet(float count)
     {
@@ -31,6 +33,7 @@ public class Wallet : Singleton<Wallet>
         _count += money;
         Save();
         OnMoneyChange?.Invoke(_count);
+        OnAdd?.Invoke(money);
     }
 
     public void Pay(float price)
@@ -40,6 +43,7 @@ public class Wallet : Singleton<Wallet>
         _count -= price;
         Save();
         OnMoneyChange?.Invoke(_count);
+        OnPay?.Invoke(price);
     }
 
     private void Save()

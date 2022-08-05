@@ -4,7 +4,7 @@ public class TouchInput : MonoBehaviour
     [SerializeField] protected Vector2 _direction;
     [SerializeField] private Vector2 _startPos;
 
-    protected virtual void Update()
+    protected virtual void FixedUpdate()
     {
         if (Input.touchCount > 0)
         {

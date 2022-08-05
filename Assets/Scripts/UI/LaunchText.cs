@@ -6,10 +6,15 @@ public class LaunchText : MonoBehaviour
 {
     [SerializeField] private TextMeshProUGUI _textMeshProUGUI;
     [SerializeField] private float _counter = 4;
+    [SerializeField] private Rocket _rocket;
 
     private void Awake()
     {
         _textMeshProUGUI = GetComponent<TextMeshProUGUI>();
+    }
+
+    public void Launch() 
+    {
         _textMeshProUGUI.text = $"{_counter}";
         StartCoroutine(TimerTick());
     }
@@ -22,6 +27,7 @@ public class LaunchText : MonoBehaviour
             _counter--;
             _textMeshProUGUI.text = $"{_counter}";
         }
+        _rocket.Launch();
         Destroy(gameObject);
     }
 }

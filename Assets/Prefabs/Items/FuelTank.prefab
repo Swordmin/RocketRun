@@ -111,7 +111,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e0ea6f76db58ad347b79fdf6f416da2f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _audioSource: {fileID: 1319383238879290986}
+  _audioTrack:
+    _loop: 0
+    _clip: {fileID: 8300000, guid: b38490e1c4c386c41bcf31f92aadc070, type: 3}
+    _volume: 0.1
+    _isPlay: 0
   _fuel: 2
 --- !u!54 &-6869410693587115373
 Rigidbody:

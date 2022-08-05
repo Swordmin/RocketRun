@@ -84,6 +84,7 @@ public class MainMenu : MonoBehaviour
         if (_codeField.text.ToLower() == "weneedmoregold")
         {
             Wallet.Instance.AddMoney(300);
+            return;
         }
 
         _adminPanelText.text = "Is that a Krusty Krab?";
@@ -102,6 +103,7 @@ public class MainMenu : MonoBehaviour
         saveData.MaxHight = 0;
         saveData.Language = "";
         saveData.PurchasedParts = new List<string>() { "null" };
+        saveData.Session = 0;
         saveSystem.Save(saveData);
         Wallet.Instance.Load();
     }

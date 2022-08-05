@@ -48,8 +48,6 @@ public class Rocket : MonoBehaviour, IPause
         _wallet = Wallet.Instance ?? new Wallet(0);
         if(_isShop)
             return;
-        if(GameStateService.Instance)
-            Invoke(nameof(NextPart),3);
     }
     private void Start()
     {
@@ -61,6 +59,14 @@ public class Rocket : MonoBehaviour, IPause
             _gameStateService.UpdateState(GameState.Fail);
         };
     }
+    private void Update()
+    {
+        if(Input.GetKeyDown(KeyCode.K))
+        {
+            _gameStateService.UpdateState(GameState.Fail);
+            DestroyRocket();
+        }
+    }
 
     #region PartsSetup
     public void AddPart(PartRocket part) => _engines.Add(part);
@@ -69,6 +75,8 @@ public class Rocket : MonoBehaviour, IPause
 
     #endregion
     #region PartsControl
+
+    public void Launch() => NextPart();
 
     private void NextPart()
     {

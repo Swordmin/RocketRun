@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Xml;
 using TMPro;
 using UnityEngine;
-using UnityEngine.UIElements;
 
 public class TranslateService : Singleton<TranslateService>
 {
@@ -21,7 +20,10 @@ public class TranslateService : Singleton<TranslateService>
     protected override void Awake()
     {
         Initialization(true);
+        SystemLanguage language = SystemLanguage.English;
+        ChangeLanguage(language.ToString());
         base.Awake();
+
     }
 
     private void Start()
@@ -45,8 +47,8 @@ public class TranslateService : Singleton<TranslateService>
         }
         catch (Exception e)
         {
-            _textDebug.text = e.ToString();
-            throw;
+            if(_textDebug)
+                _textDebug.text = e.ToString();
         }
     }
     
@@ -144,7 +146,56 @@ public class TranslateService : Singleton<TranslateService>
 
         return "NotFound";
     }
-    
+
+    public string Change(string id, TextMeshProUGUI _textMesh)
+    {
+
+        BinarySaveSystem saveSystem = new BinarySaveSystem();
+        SaveData saveData = saveSystem.Load();
+        TMP_FontAsset font = new TMP_FontAsset();
+
+        if (String.IsNullOrEmpty(saveData.Language))
+        {
+            _language = "English";
+            saveData.Language = _language;
+            saveSystem.Save(saveData);
+        }
+        else
+            _language = saveData.Language;
+
+        foreach (Language language in _languages)
+        {
+            if (language.Id == _language)
+                font = language.Font;
+        }
+
+        XmlDocument xDoc = new XmlDocument();
+        TextAsset xmlFile = Resources.Load<TextAsset>("XML/Language");
+        xDoc.LoadXml(xmlFile.text);
+        XmlElement xRoot = xDoc.DocumentElement;
+
+
+        foreach (XmlNode childnode in xRoot.ChildNodes)
+        {
+
+            if (childnode.LocalName != _language) continue;
+
+            foreach (XmlNode child in childnode)
+            {
+
+                if (child.LocalName != id) continue;
+
+                _textMesh.font = font;
+                return child.InnerText;
+
+            }
+
+
+        }
+
+        return "NotFound";
+    }
+
     public void ChangeLanguage()
     {
         OnChangeLanguage?.Invoke();

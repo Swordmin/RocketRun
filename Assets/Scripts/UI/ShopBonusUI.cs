@@ -16,7 +16,7 @@ public class ShopBonusUI : MonoBehaviour
     private void Awake()
     {
         CheckSaleState();
-        _textMeshDescriptionText.text = TranslateService.Instance.Change(_descriptionTranslateId) + _description;
+        _textMeshDescriptionText.text = $"{TranslateService.Instance.Change(_descriptionTranslateId, _textMeshDescriptionText)} {_description}";
         _textMeshPrice.text = $"{_price}";
     }
 
