@@ -8,6 +8,32 @@ public class InterstitialAds : MonoBehaviour, IUnityAdsLoadListener, IUnityAdsSh
     private void Start()
     {
         LoadAd();
+        if (GetComponent<GameStateService>()) 
+        {
+            GetComponent<GameStateService>().OnChangeState += (state) =>
+            {
+
+                if (state == GameState.Fail)
+                {
+                    if (!PlayerPrefs.HasKey("FailCount"))
+                    {
+                        PlayerPrefs.SetInt("FailCount", 1);
+                    }
+                    else 
+                    {
+                        int failCount = PlayerPrefs.GetInt("FailCount");
+                        failCount++;
+                        PlayerPrefs.SetInt("FailCount", failCount);
+                        if (failCount % 3 == 1)
+                        {
+                            PlayerPrefs.SetInt("FailCount", 0);
+                            ShowAd();
+                        }
+                    }
+
+                }
+            };
+        }
     }
 
     public void LoadAd()

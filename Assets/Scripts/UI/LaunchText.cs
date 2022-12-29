@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using TMPro;
 using UnityEngine;
 
@@ -7,6 +8,7 @@ public class LaunchText : MonoBehaviour
     [SerializeField] private TextMeshProUGUI _textMeshProUGUI;
     [SerializeField] private float _counter = 4;
     [SerializeField] private Rocket _rocket;
+    public Action OnLaunch;
 
     private void Awake()
     {
@@ -28,6 +30,7 @@ public class LaunchText : MonoBehaviour
             _textMeshProUGUI.text = $"{_counter}";
         }
         _rocket.Launch();
+        OnLaunch?.Invoke();
         Destroy(gameObject);
     }
 }

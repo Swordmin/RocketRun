@@ -14,6 +14,7 @@ public class GameStateService : Singleton<GameStateService>
     [SerializeField] private UnityEvent _onMenuState;
     [SerializeField] private UnityEvent _onShopState;
     [SerializeField] private UnityEvent _onPauseState;
+    private InterstitialAds _ads;
 
     protected override void Awake()
     {
