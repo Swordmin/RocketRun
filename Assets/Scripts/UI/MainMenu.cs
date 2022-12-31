@@ -28,6 +28,7 @@ public class MainMenu : MonoBehaviour
             saveSystem.Save(data);
             _textDebug.text = "NotExist";
             PlayerPrefs.SetString("FirstPlay","No");
+            TranslateService.Instance.SetStartLanguage();
         }
 
         if (PlayerPrefs.HasKey("FirstPlay"))
@@ -41,6 +42,7 @@ public class MainMenu : MonoBehaviour
         {
             PlayerPrefs.SetString("FirstPlay", "Yes");
         }
+        GameSettingsService.Instance.Intialized();
     }
 
     public void StartGame()
@@ -80,7 +82,6 @@ public class MainMenu : MonoBehaviour
             OpenAdminPanel();
             return;
         }
-
         if (_codeField.text.ToLower() == "weneedmoregold")
         {
             Wallet.Instance.AddMoney(300);

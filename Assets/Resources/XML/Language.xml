@@ -26,6 +26,11 @@
     <Put>Взять</Put>
     <Menu>Меню</Menu>
     <Sale>Продано</Sale>
+    <Rate>Оцените игру</Rate>
+    <RateDes>Понравилась игра?</RateDes>
+    <InputType>Тип управление</InputType>
+    <Arrows>Кнопки</Arrows>
+    <Finger>Палец</Finger>
   </Russian>
   <English>
     <Play>Play</Play>
@@ -52,6 +57,11 @@
     <Put>Put</Put>
     <Menu>Menu</Menu>
     <Sale>Sales</Sale>
+    <Rate>Rate the game</Rate>
+    <RateDes>Did you like the game?</RateDes>
+    <InputType>Control type</InputType>
+    <Arrows>Buttons</Arrows>
+    <Finger>Finger</Finger>
 </English>
   <Czech>
     <Play>Start</Play>
@@ -78,6 +88,11 @@
     <Put>Vezměte</Put>
     <Menu>Nabídka</Menu>
     <Sale>Odbyt</Sale>
+    <Rate>Ohodnoťte hru</Rate>
+    <RateDes>Líbila se vám hra?</RateDes>
+    <InputType>Typ ovládání</InputType>
+    <Arrows>Tlačítka</Arrows>
+    <Finger>Prst</Finger>
   </Czech>
   <French>
     <Play>Jouer</Play>
@@ -104,6 +119,11 @@
     <Put>Prendre</Put>
     <Menu>Menu</Menu>
     <Sale>Ventes</Sale>
+    <Rate>Notez le jeu</Rate>
+    <RateDes>Avez-vous aimé le jeu ?</RateDes>
+    <InputType>Type de contrôle</InputType>
+    <Arrows>Boutons</Arrows>
+    <Finger>Doigt</Finger>
   </French>
   <Polish>
     <Play>Rozpocznij</Play>
@@ -130,6 +150,11 @@
     <Put>Brać</Put>
     <Menu>Menu</Menu>
     <Sale>Sprzedane</Sale>
+    <Rate>Oceń grę</Rate>
+    <RateDes>Podobała ci się gra?</RateDes>
+    <InputType>Typ kontrolki</InputType>
+    <Arrows>Przyciski</Arrows>
+    <Finger>Palec</Finger>
   </Polish>
   <Italian>
     <Play>Inizia</Play>
@@ -155,7 +180,9 @@
     <MagnetArea>Potenza magnetica</MagnetArea>
     <Put>Prendi</Put>
     <Menu>Menu</Menu>
-    <Sale>Venduta</Sale>
+    <InputType>Tipo di controllo</InputType>
+    <Arrows>Pulsanti</Arrows>
+    <Finger>Dito</Finger>
   </Italian>
   <Spanish>
     <Play>Comenzar</Play>
@@ -182,6 +209,11 @@
     <Put>Tomar</Put>
     <Menu>Menú</Menu>
     <Sale>Vendido</Sale>
+    <Rate>Califica el juego</Rate>
+    <RateDes>¿Te gustó el juego?</RateDes>
+    <InputType>Tipo de control</InputType>
+    <Arrows>Botones</Arrows>
+    <Finger>Dedo</Finger>
   </Spanish>
   <Deutsch>
     <Play>Start</Play>
@@ -208,6 +240,11 @@
     <Put>Take</Put>
     <Menu>Menü</Menu>
     <Sale>Verkauft</Sale>
+    <Rate>Bewerte das Spiel</Rate>
+    <RateDes>Hat dir das Spiel gefallen?</RateDes>
+    <InputType>Steuerungstyp</InputType>
+    <Arrows>Schaltflächen</Arrows>
+    <Finger>Finger</Finger>
   </Deutsch>
 
 </Language>

@@ -17,6 +17,12 @@ public class ShopItemUI : MonoBehaviour
     [SerializeField] private TextMeshProUGUI _fuelText;
     [SerializeField] private PartRocket _part;
     private Wallet _wallet;
+    private AudioSource _audioSource;
+
+    private void Awake()
+    {
+        _audioSource = GetComponent<AudioSource>();
+    }
 
     private void Start()
     {
@@ -33,6 +39,7 @@ public class ShopItemUI : MonoBehaviour
         {
             if (_wallet.Count >= _price)
             {
+                _audioSource.Play();
                 _wallet.Pay(_price);
                 _rocketSetup.UpdatePart(_type, _id);
                 BinarySaveSystem saveSystem = new BinarySaveSystem();

@@ -20,8 +20,6 @@ public class TranslateService : Singleton<TranslateService>
     protected override void Awake()
     {
         Initialization(true);
-        SystemLanguage language = SystemLanguage.English;
-        ChangeLanguage(language.ToString());
         base.Awake();
 
     }
@@ -30,8 +28,16 @@ public class TranslateService : Singleton<TranslateService>
     {
         BinarySaveSystem saveSystem = new BinarySaveSystem();
         SaveData saveData = saveSystem.Load();
-        if(saveData.Language != "")
+        if (saveData.Language != "")
+        {
             ChangeLanguage(saveData.Language);
+        }
+    }
+
+    public void SetStartLanguage() 
+    {
+        SystemLanguage language = Application.systemLanguage;
+        ChangeLanguage(language.ToString());
     }
 
     public void ChangeLanguage(string language)
@@ -43,7 +49,6 @@ public class TranslateService : Singleton<TranslateService>
             saveData.Language = language;
             saveSystem.Save(saveData); 
             OnChangeLanguage?.Invoke();
-            _textDebug.text = "complite" + language;
         }
         catch (Exception e)
         {

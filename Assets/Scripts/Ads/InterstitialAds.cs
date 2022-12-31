@@ -24,9 +24,8 @@ public class InterstitialAds : MonoBehaviour, IUnityAdsLoadListener, IUnityAdsSh
                         int failCount = PlayerPrefs.GetInt("FailCount");
                         failCount++;
                         PlayerPrefs.SetInt("FailCount", failCount);
-                        if (failCount % 3 == 1)
+                        if (failCount % 5 == 1)
                         {
-                            PlayerPrefs.SetInt("FailCount", 0);
                             ShowAd();
                         }
                     }

@@ -2307,13 +2307,13 @@ IL_002b:
 		RuntimeObject* L_9 = L_8.___Content_0;
 		String_t* L_10 = ___name0;
 		NullCheck(L_9);
-		InterfaceActionInvoker2< String_t*, String_t* >::Invoke(5 /* System.Void System.Collections.Generic.IDictionary`2<System.String,System.String>::Add(TKey,TValue) */, IDictionary_2_t51DBA2F8AFDC8E5CC588729B12034B8C4D30B0AF_il2cpp_TypeInfo_var, L_9, _stringLiteralCE18B047107AA23D1AA9B2ED32D316148E02655F, L_10);
+		InterfaceActionInvoker2< String_t*, String_t* >::Invoke(4 /* System.Void System.Collections.Generic.IDictionary`2<System.String,System.String>::Add(TKey,TValue) */, IDictionary_2_t51DBA2F8AFDC8E5CC588729B12034B8C4D30B0AF_il2cpp_TypeInfo_var, L_9, _stringLiteralCE18B047107AA23D1AA9B2ED32D316148E02655F, L_10);
 		// diagnostic.Content.Add(TagKeys.DiagnosticMessage, message);
 		Diagnostic_t6762F35062B939B79ECD2F38670A5A56FF25311A L_11 = V_0;
 		RuntimeObject* L_12 = L_11.___Content_0;
 		String_t* L_13 = ___message1;
 		NullCheck(L_12);
-		InterfaceActionInvoker2< String_t*, String_t* >::Invoke(5 /* System.Void System.Collections.Generic.IDictionary`2<System.String,System.String>::Add(TKey,TValue) */, IDictionary_2_t51DBA2F8AFDC8E5CC588729B12034B8C4D30B0AF_il2cpp_TypeInfo_var, L_12, _stringLiteralD559C6D97E819D8E4EF7ACDC34C4E8D3DD314964, L_13);
+		InterfaceActionInvoker2< String_t*, String_t* >::Invoke(4 /* System.Void System.Collections.Generic.IDictionary`2<System.String,System.String>::Add(TKey,TValue) */, IDictionary_2_t51DBA2F8AFDC8E5CC588729B12034B8C4D30B0AF_il2cpp_TypeInfo_var, L_12, _stringLiteralD559C6D97E819D8E4EF7ACDC34C4E8D3DD314964, L_13);
 		// Handler.Register(diagnostic);
 		DiagnosticsHandler_t9AE9840AF25655F717E0584299B3608FCE227C22* L_14;
 		L_14 = Diagnostics_get_Handler_mFA92ACC612B06CC0DC12F58A2F6CD09430F0F7B9_inline(__this, NULL);

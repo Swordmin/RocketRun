@@ -99,6 +99,7 @@ public class RocketSetup : MonoBehaviour
 
     private void Save()
     {
+        Debug.Log("Save");
         SaveData saveData;
         if (PlayerPrefs.GetString("FirstPlay") == "Yes")
         {
@@ -119,8 +120,10 @@ public class RocketSetup : MonoBehaviour
 
     private void Load()
     {
+        Debug.Log("Load");
         SaveData saveData = _saveSystem.Load();
         _idHadEngine = saveData.IdHadEngine;
+        Debug.Log(saveData.IdBasicEngine);
         _idBasicEngine = saveData.IdBasicEngine;
         _idDoubleEngine = saveData.IdDoubleEngine;
         _idWings = saveData.IdWings;
@@ -131,12 +134,14 @@ public class RocketSetup : MonoBehaviour
     }
     private PartRocket CreatePart(string id)
     {
+        Debug.Log(id);
         GameObject partFind = FindPart(id);
         PartRocket createdPart = Instantiate(partFind,transform.position + partFind.transform.position, partFind.transform.rotation, transform).GetComponent<PartRocket>();
         return createdPart;
     }
     private PartRocket CreatePart(string id, out PartRocket partRocket, Action action)
     {
+        Debug.Log(id);
         GameObject partFind = FindPart(id);
         PartRocket createdPart = Instantiate(partFind,transform.position + partFind.transform.position, partFind.transform.rotation, transform).GetComponent<PartRocket>();
         partRocket = createdPart;

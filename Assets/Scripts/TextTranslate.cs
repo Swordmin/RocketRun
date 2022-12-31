@@ -1,5 +1,4 @@
-﻿using System;
-using TMPro;
+﻿using TMPro;
 using UnityEngine;
 
 public class TextTranslate : MonoBehaviour
@@ -11,6 +10,8 @@ public class TextTranslate : MonoBehaviour
 
     private void Start()
     {
+        if (!TranslateService.Instance)
+            return;
         _textMesh = GetComponent<TextMeshProUGUI>();
         TranslateService.Instance.Change(this);
         TranslateService.Instance.OnChangeLanguage += TextUpdate;

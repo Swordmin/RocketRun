@@ -55,6 +55,7 @@ public class SaveData
     public float MaxHight;
     public float Session;
     public List<string> PurchasedParts = new List<string>(){"null"};
+    public InputType InputType;
 
     public void AddPurchasedPart(string id)
     {

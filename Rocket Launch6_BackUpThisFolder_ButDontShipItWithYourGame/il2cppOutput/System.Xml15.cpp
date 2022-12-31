@@ -22858,7 +22858,7 @@ IL_0125:
 	{
 		String_t* L_58 = ___value3;
 		NullCheck(G_B16_1);
-		VirtualActionInvoker2< RuntimeObject*, RuntimeObject* >::Invoke(22 /* System.Void System.Collections.Hashtable::Add(System.Object,System.Object) */, G_B16_1, G_B16_0, L_58);
+		VirtualActionInvoker2< RuntimeObject*, RuntimeObject* >::Invoke(21 /* System.Void System.Collections.Hashtable::Add(System.Object,System.Object) */, G_B16_1, G_B16_0, L_58);
 		return;
 	}
 
@@ -22961,7 +22961,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void XsdBuilder_StartChildren_mFFB54ACD171F51
 		Hashtable_tEFC3B6496E6747787D8BB761B51F2AE3A8CFFE2D* L_2 = __this->___namespaces_110;
 		NullCheck(L_2);
 		int32_t L_3;
-		L_3 = VirtualFuncInvoker0< int32_t >::Invoke(39 /* System.Int32 System.Collections.Hashtable::get_Count() */, L_2);
+		L_3 = VirtualFuncInvoker0< int32_t >::Invoke(38 /* System.Int32 System.Collections.Hashtable::get_Count() */, L_2);
 		if ((((int32_t)L_3) <= ((int32_t)0)))
 		{
 			goto IL_003b;

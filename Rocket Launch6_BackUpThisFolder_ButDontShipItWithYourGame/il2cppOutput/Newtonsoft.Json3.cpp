@@ -274,8 +274,6 @@ struct Func_2_tC19A706BD1F2C219A6333C8872754B909FD59ABD;
 struct IArrayPool_1_t5EA5B0C4FD1E47DB5E30F9B7802F3D7E181E10F6;
 // System.Collections.Generic.ICollection`1<Newtonsoft.Json.Linq.JToken>
 struct ICollection_1_tB7893C7A5B99F5C4911CA416A7C3A887A93B0494;
-// System.Collections.Generic.ICollection`1<System.String>
-struct ICollection_1_t5C03FBFD5ECBDE4EAB8C4ED582DDFCF702EB5DC7;
 // System.Collections.Generic.IDictionary`2<System.String,Newtonsoft.Json.Utilities.ReflectionMember>
 struct IDictionary_2_tCDB8A1FE2EF87909AFBA2D9CB9C94756AE8A6EDC;
 // System.Collections.Generic.IEnumerable`1<Newtonsoft.Json.Linq.JProperty>
@@ -304,8 +302,6 @@ struct IList_1_t0DB1A7DB9F325547C40729D8C029C1BE06F08A8F;
 struct IList_1_t106D4C1340745E38431865BBEA6AE170A4713431;
 // System.Collections.Generic.IList`1<System.Object>
 struct IList_1_t6EE90D273EFCF5E7E4C37FAB712E70BB6F1B4BFF;
-// System.Collections.Generic.Dictionary`2/KeyCollection<System.Object,System.Object>
-struct KeyCollection_tB45A861D090B15129521119AE48ED3813820A974;
 // System.Collections.Generic.Dictionary`2/KeyCollection<System.String,Newtonsoft.Json.Linq.JToken>
 struct KeyCollection_tDA310B7DC9CAFA53DA33CE00320B8FDEC25A202A;
 // System.Collections.Generic.List`1<System.Byte>
@@ -1056,7 +1052,6 @@ IL2CPP_EXTERN_C const RuntimeMethod* Dictionary_2_ContainsKey_m1B957D479B89EA1AD
 IL2CPP_EXTERN_C const RuntimeMethod* Dictionary_2_Remove_m6358402818FC261BA5711F97C710A89AFE649773_RuntimeMethod_var;
 IL2CPP_EXTERN_C const RuntimeMethod* Dictionary_2_TryGetValue_m1518E334AF06A7B048D9744622B475F6474D7EEC_RuntimeMethod_var;
 IL2CPP_EXTERN_C const RuntimeMethod* Dictionary_2__ctor_m6736E4640315631B0E74484B23642C364B88557D_RuntimeMethod_var;
-IL2CPP_EXTERN_C const RuntimeMethod* Dictionary_2_get_Keys_m3FFE24DA2B61499FBC968B9C5F27CFDBF74023E0_RuntimeMethod_var;
 IL2CPP_EXTERN_C const RuntimeMethod* Dictionary_2_set_Item_m32046C1137A7FEE1505E3290FAD4357FE71CA175_RuntimeMethod_var;
 IL2CPP_EXTERN_C const RuntimeMethod* DynamicProxyMetaObject_1__ctor_m0DCD6CEB8712482048CF5C893DC7FE138F6412A4_RuntimeMethod_var;
 IL2CPP_EXTERN_C const RuntimeMethod* DynamicProxyMetaObject_1__ctor_m6C79747587B4C9E3240A96D717F086E77EDB1700_RuntimeMethod_var;
@@ -1363,13 +1358,6 @@ struct EmptyArray_1_tDF0DD7256B115243AA6BD5558417387A734240EE_StaticFields
 {
 	// T[] System.EmptyArray`1::Value
 	ObjectU5BU5D_t8061030B0A12A55D5AD8652A20C922FE99450918* ___Value_0;
-};
-
-// System.Collections.Generic.Dictionary`2/KeyCollection<System.String,Newtonsoft.Json.Linq.JToken>
-struct KeyCollection_tDA310B7DC9CAFA53DA33CE00320B8FDEC25A202A  : public RuntimeObject
-{
-	// System.Collections.Generic.Dictionary`2<TKey,TValue> System.Collections.Generic.Dictionary`2/KeyCollection::_dictionary
-	Dictionary_2_t46198BF25BCCD54701A31C956FA3324EFD3B5959* ____dictionary_0;
 };
 
 // System.Collections.Generic.List`1<System.Byte>
@@ -5098,8 +5086,6 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR bool Dictionary_2_Remove_m5C7C45E75D951A75843
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void Collection_1_SetItem_m857CDBE93125BE51A12219DFE55C1442BC21601C_gshared (Collection_1_t3899E6252BC3D003B1AB1D6F5D7AD93EB1DCEEC3* __this, int32_t ___index0, RuntimeObject* ___item1, const RuntimeMethod* method) ;
 // System.Boolean System.Collections.Generic.Dictionary`2<System.Object,System.Object>::TryGetValue(TKey,TValue&)
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR bool Dictionary_2_TryGetValue_mD15380A4ED7CDEE99EA45881577D26BA9CE1B849_gshared (Dictionary_2_t14FE4A752A83D53771C584E4C8D14E01F2AFD7BA* __this, RuntimeObject* ___key0, RuntimeObject** ___value1, const RuntimeMethod* method) ;
-// System.Collections.Generic.Dictionary`2/KeyCollection<TKey,TValue> System.Collections.Generic.Dictionary`2<System.Object,System.Object>::get_Keys()
-IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR KeyCollection_tB45A861D090B15129521119AE48ED3813820A974* Dictionary_2_get_Keys_m72D290F90654BFD683FA7AA7C63D9F4F692218B6_gshared (Dictionary_2_t14FE4A752A83D53771C584E4C8D14E01F2AFD7BA* __this, const RuntimeMethod* method) ;
 // System.Void System.Collections.Generic.List`1<Newtonsoft.Json.JsonPosition>::.ctor()
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void List_1__ctor_m5070C1A9568ED848F054CA61F5675752CB1DC0B7_gshared (List_1_t53E7DEFF45EC8B1D5AE04D4FC6284E617F0D79CB* __this, const RuntimeMethod* method) ;
 // System.Void System.Collections.Generic.List`1<Newtonsoft.Json.JsonPosition>::Add(T)
@@ -5852,8 +5838,6 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void JObject_Add_m2F15295DA90DA00BDD3C94313C0
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void JProperty__ctor_mA59A3257A0EB4DB85735EF8F576917BF3B5415F1 (JProperty_t1B8E99236F2BD537EC4A7A63ACDB60D7C709C5F4* __this, String_t* ___name0, RuntimeObject* ___content1, const RuntimeMethod* method) ;
 // System.Boolean Newtonsoft.Json.Linq.JPropertyKeyedCollection::Contains(System.String)
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR bool JPropertyKeyedCollection_Contains_mAE6A5F9D709FC4B6498F2EFD6944ACD840CE7BF8 (JPropertyKeyedCollection_t4A44691A9942B8A7AEB4016F7405BF388D1E0632* __this, String_t* ___key0, const RuntimeMethod* method) ;
-// System.Collections.Generic.ICollection`1<System.String> Newtonsoft.Json.Linq.JPropertyKeyedCollection::get_Keys()
-IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR RuntimeObject* JPropertyKeyedCollection_get_Keys_mA42C75415669CEC080DB22E19A95927588519287 (JPropertyKeyedCollection_t4A44691A9942B8A7AEB4016F7405BF388D1E0632* __this, const RuntimeMethod* method) ;
 // System.Void Newtonsoft.Json.Linq.JToken::Remove()
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void JToken_Remove_mE7E6F0738CD2057100B78230F30169A8EFB2365C (JToken_tFD7D9015F3F97A09AD93E439ACE894D12C06E8B3* __this, const RuntimeMethod* method) ;
 // System.Void System.NotImplementedException::.ctor()
@@ -6031,11 +6015,6 @@ inline void Collection_1_SetItem_mB92F8037A072B3FC1594DB02E7F7115BB6312770 (Coll
 inline bool Dictionary_2_TryGetValue_m1518E334AF06A7B048D9744622B475F6474D7EEC (Dictionary_2_t46198BF25BCCD54701A31C956FA3324EFD3B5959* __this, String_t* ___key0, JToken_tFD7D9015F3F97A09AD93E439ACE894D12C06E8B3** ___value1, const RuntimeMethod* method)
 {
 	return ((  bool (*) (Dictionary_2_t46198BF25BCCD54701A31C956FA3324EFD3B5959*, String_t*, JToken_tFD7D9015F3F97A09AD93E439ACE894D12C06E8B3**, const RuntimeMethod*))Dictionary_2_TryGetValue_mD15380A4ED7CDEE99EA45881577D26BA9CE1B849_gshared)(__this, ___key0, ___value1, method);
-}
-// System.Collections.Generic.Dictionary`2/KeyCollection<TKey,TValue> System.Collections.Generic.Dictionary`2<System.String,Newtonsoft.Json.Linq.JToken>::get_Keys()
-inline KeyCollection_tDA310B7DC9CAFA53DA33CE00320B8FDEC25A202A* Dictionary_2_get_Keys_m3FFE24DA2B61499FBC968B9C5F27CFDBF74023E0 (Dictionary_2_t46198BF25BCCD54701A31C956FA3324EFD3B5959* __this, const RuntimeMethod* method)
-{
-	return ((  KeyCollection_tDA310B7DC9CAFA53DA33CE00320B8FDEC25A202A* (*) (Dictionary_2_t46198BF25BCCD54701A31C956FA3324EFD3B5959*, const RuntimeMethod*))Dictionary_2_get_Keys_m72D290F90654BFD683FA7AA7C63D9F4F692218B6_gshared)(__this, method);
 }
 // System.StringComparer System.StringComparer::get_Ordinal()
 IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR StringComparer_t6268F19CA34879176651429C0D8A3D0002BB8E06* StringComparer_get_Ordinal_m77A8C28E78759556E06A6925E949737A45599E26_inline (const RuntimeMethod* method) ;
@@ -14461,7 +14440,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void JObject_InternalPropertyChanged_m294A833
 		NullCheck(L_0);
 		String_t* L_1;
 		L_1 = JProperty_get_Name_m96280838000C5E193121125A503BA9108DB707CA_inline(L_0, NULL);
-		VirtualActionInvoker1< String_t* >::Invoke(82 /* System.Void Newtonsoft.Json.Linq.JObject::OnPropertyChanged(System.String) */, __this, L_1);
+		VirtualActionInvoker1< String_t* >::Invoke(81 /* System.Void Newtonsoft.Json.Linq.JObject::OnPropertyChanged(System.String) */, __this, L_1);
 		ListChangedEventHandler_tDBF36F3E2C6B7538106878E1D5A7553C5EA77616* L_2 = ((JContainer_tFD3E2CD9B9D8D3CD73133B11A1F6BE77C5C8F95A*)__this)->____listChanged_14;
 		if (!L_2)
 		{
@@ -14511,7 +14490,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void JObject_InternalPropertyChanging_mE24950
 		NullCheck(L_0);
 		String_t* L_1;
 		L_1 = JProperty_get_Name_m96280838000C5E193121125A503BA9108DB707CA_inline(L_0, NULL);
-		VirtualActionInvoker1< String_t* >::Invoke(83 /* System.Void Newtonsoft.Json.Linq.JObject::OnPropertyChanging(System.String) */, __this, L_1);
+		VirtualActionInvoker1< String_t* >::Invoke(82 /* System.Void Newtonsoft.Json.Linq.JObject::OnPropertyChanging(System.String) */, __this, L_1);
 		return;
 	}
 }
@@ -14722,12 +14701,12 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void JObject_set_Item_m38ACF4BABEDE80CF0138DA
 IL_0014:
 	{
 		String_t* L_5 = ___propertyName0;
-		VirtualActionInvoker1< String_t* >::Invoke(83 /* System.Void Newtonsoft.Json.Linq.JObject::OnPropertyChanging(System.String) */, __this, L_5);
+		VirtualActionInvoker1< String_t* >::Invoke(82 /* System.Void Newtonsoft.Json.Linq.JObject::OnPropertyChanging(System.String) */, __this, L_5);
 		String_t* L_6 = ___propertyName0;
 		JToken_tFD7D9015F3F97A09AD93E439ACE894D12C06E8B3* L_7 = ___value1;
 		JObject_Add_m2F15295DA90DA00BDD3C94313C0F3DC4DE3C7A39(__this, L_6, L_7, NULL);
 		String_t* L_8 = ___propertyName0;
-		VirtualActionInvoker1< String_t* >::Invoke(82 /* System.Void Newtonsoft.Json.Linq.JObject::OnPropertyChanged(System.String) */, __this, L_8);
+		VirtualActionInvoker1< String_t* >::Invoke(81 /* System.Void Newtonsoft.Json.Linq.JObject::OnPropertyChanged(System.String) */, __this, L_8);
 		return;
 	}
 }
@@ -14912,17 +14891,6 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR bool JObject_ContainsKey_m6B74EB007B052D50B2D
 		bool L_3;
 		L_3 = JPropertyKeyedCollection_Contains_mAE6A5F9D709FC4B6498F2EFD6944ACD840CE7BF8(L_1, L_2, NULL);
 		return L_3;
-	}
-}
-// System.Collections.Generic.ICollection`1<System.String> Newtonsoft.Json.Linq.JObject::System.Collections.Generic.IDictionary<System.String,Newtonsoft.Json.Linq.JToken>.get_Keys()
-IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR RuntimeObject* JObject_System_Collections_Generic_IDictionaryU3CSystem_StringU2CNewtonsoft_Json_Linq_JTokenU3E_get_Keys_mE713556A297D5397CB3AB964C8EEEA27BCD7C48F (JObject_t22BBBA7A90517B7E66E8C9D8D16DE84CB5054DE1* __this, const RuntimeMethod* method) 
-{
-	{
-		JPropertyKeyedCollection_t4A44691A9942B8A7AEB4016F7405BF388D1E0632* L_0 = __this->____properties_18;
-		NullCheck(L_0);
-		RuntimeObject* L_1;
-		L_1 = JPropertyKeyedCollection_get_Keys_mA42C75415669CEC080DB22E19A95927588519287(L_0, NULL);
-		return L_1;
 	}
 }
 // System.Boolean Newtonsoft.Json.Linq.JObject::Remove(System.String)
@@ -15283,7 +15251,7 @@ IL_000b:
 		String_t* L_2;
 		L_2 = KeyValuePair_2_get_Key_m58D71AFA188B3B9B9C6FFE10C720DE49333F1A08_inline((&___item0), KeyValuePair_2_get_Key_m58D71AFA188B3B9B9C6FFE10C720DE49333F1A08_RuntimeMethod_var);
 		bool L_3;
-		L_3 = InterfaceFuncInvoker1< bool, String_t* >::Invoke(6 /* System.Boolean System.Collections.Generic.IDictionary`2<System.String,Newtonsoft.Json.Linq.JToken>::Remove(TKey) */, IDictionary_2_t641BD83F3C4FF5FE1C7429862C1E2B6E3DB7527B_il2cpp_TypeInfo_var, __this, L_2);
+		L_3 = InterfaceFuncInvoker1< bool, String_t* >::Invoke(5 /* System.Boolean System.Collections.Generic.IDictionary`2<System.String,Newtonsoft.Json.Linq.JToken>::Remove(TKey) */, IDictionary_2_t641BD83F3C4FF5FE1C7429862C1E2B6E3DB7527B_il2cpp_TypeInfo_var, __this, L_2);
 		return (bool)1;
 	}
 }
@@ -17551,24 +17519,6 @@ IL_000d:
 		bool L_5;
 		L_5 = Dictionary_2_TryGetValue_m1518E334AF06A7B048D9744622B475F6474D7EEC(L_2, L_3, L_4, Dictionary_2_TryGetValue_m1518E334AF06A7B048D9744622B475F6474D7EEC_RuntimeMethod_var);
 		return L_5;
-	}
-}
-// System.Collections.Generic.ICollection`1<System.String> Newtonsoft.Json.Linq.JPropertyKeyedCollection::get_Keys()
-IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR RuntimeObject* JPropertyKeyedCollection_get_Keys_mA42C75415669CEC080DB22E19A95927588519287 (JPropertyKeyedCollection_t4A44691A9942B8A7AEB4016F7405BF388D1E0632* __this, const RuntimeMethod* method) 
-{
-	static bool s_Il2CppMethodInitialized;
-	if (!s_Il2CppMethodInitialized)
-	{
-		il2cpp_codegen_initialize_runtime_metadata((uintptr_t*)&Dictionary_2_get_Keys_m3FFE24DA2B61499FBC968B9C5F27CFDBF74023E0_RuntimeMethod_var);
-		s_Il2CppMethodInitialized = true;
-	}
-	{
-		JPropertyKeyedCollection_EnsureDictionary_mFA61760F658076357677A7A4E65E30DBDD50A50D(__this, NULL);
-		Dictionary_2_t46198BF25BCCD54701A31C956FA3324EFD3B5959* L_0 = __this->____dictionary_2;
-		NullCheck(L_0);
-		KeyCollection_tDA310B7DC9CAFA53DA33CE00320B8FDEC25A202A* L_1;
-		L_1 = Dictionary_2_get_Keys_m3FFE24DA2B61499FBC968B9C5F27CFDBF74023E0(L_0, Dictionary_2_get_Keys_m3FFE24DA2B61499FBC968B9C5F27CFDBF74023E0_RuntimeMethod_var);
-		return L_1;
 	}
 }
 // System.Int32 Newtonsoft.Json.Linq.JPropertyKeyedCollection::IndexOfReference(Newtonsoft.Json.Linq.JToken)

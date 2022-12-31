@@ -1461,7 +1461,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void ConfigurationCollectionHelper_SetOrCreat
 		String_t* L_1 = ___key1;
 		NullCheck(L_0);
 		bool L_2;
-		L_2 = InterfaceFuncInvoker2< bool, String_t*, ConfigurationEntry_t9DC70834AC631CC28DFF4C96C859E4106EF5E75E** >::Invoke(7 /* System.Boolean System.Collections.Generic.IDictionary`2<System.String,Unity.Services.Core.Configuration.ConfigurationEntry>::TryGetValue(TKey,TValue&) */, IDictionary_2_tC2DD277FD757B5D1EBE17DDC9278C21DA48CE13D_il2cpp_TypeInfo_var, L_0, L_1, (&V_0));
+		L_2 = InterfaceFuncInvoker2< bool, String_t*, ConfigurationEntry_t9DC70834AC631CC28DFF4C96C859E4106EF5E75E** >::Invoke(6 /* System.Boolean System.Collections.Generic.IDictionary`2<System.String,Unity.Services.Core.Configuration.ConfigurationEntry>::TryGetValue(TKey,TValue&) */, IDictionary_2_tC2DD277FD757B5D1EBE17DDC9278C21DA48CE13D_il2cpp_TypeInfo_var, L_0, L_1, (&V_0));
 		if (!L_2)
 		{
 			goto IL_002f;

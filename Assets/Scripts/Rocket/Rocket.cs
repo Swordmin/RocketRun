@@ -1,12 +1,17 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using UnityEngine;
 
 [RequireComponent(typeof(Rigidbody))]
+[RequireComponent(typeof(RocketSound))]
 public class Rocket : MonoBehaviour, IPause
 {
     public float AllPartsPower;
     public float AllPartsFuel;
     public float AllPartsRotateSpeed;
+
+    public Action OnLaunch;
+    public Action OnChangePart;
 
     public float Health => _health;
     [SerializeField] private float _health;
@@ -49,6 +54,7 @@ public class Rocket : MonoBehaviour, IPause
         if(_isShop)
             return;
     }
+
     private void Start()
     {
         PauseController.Instance.AddPause(this);
@@ -59,6 +65,7 @@ public class Rocket : MonoBehaviour, IPause
             _gameStateService.UpdateState(GameState.Fail);
         };
     }
+
     private void Update()
     {
         if(Input.GetKeyDown(KeyCode.K))
@@ -76,13 +83,20 @@ public class Rocket : MonoBehaviour, IPause
     #endregion
     #region PartsControl
 
-    public void Launch() => NextPart();
+    public void Launch()
+    {
+        OnLaunch?.Invoke();
+        NextPart(); 
+    }
 
     private void NextPart()
     {
         _isWorks = true;
         if (_currentEngine && _engines.Count != 1)
+        {
             OldPartDeactivate();
+            OnChangePart?.Invoke();
+        }
         int id;
         if (_engines.Count == 1)
             id = 0;
@@ -106,6 +120,7 @@ public class Rocket : MonoBehaviour, IPause
 
     public void RotateLeft()
     {
+        Debug.Log("fds");
         if (_currentEngine)
             transform.Rotate(new Vector3(0, 0, -_currentEngine.RotateSpeed));
     }
